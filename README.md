@@ -8,7 +8,7 @@ This repository serves as my way to help me setup and maintain my Mac. It takes 
 📺 - [Watch the screencast on Laracasts](https://laracasts.com/series/guest-spotlight/episodes/1)  
 💡 - [Learn how to build your own dotfiles](https://github.com/driesvints/dotfiles#your-own-dotfiles)
 
-## A Fresh macOS Setup
+## Steps to bootstrap a new MacOS
 
 These instructions are for when you've already set up your dotfiles. If you want to get started with your own dotfiles you can [find instructions below](#your-own-dotfiles).
 
@@ -16,11 +16,26 @@ These instructions are for when you've already set up your dotfiles. If you want
 
 First, go through the checklist below to make sure you didn't forget anything before you wipe your hard drive.
 
-- Did you commit and push any changes/branches to your git repositories?
-- Did you remember to save all important documents from non-iCloud directories?
-- Did you save all of your work from apps which aren't synced through iCloud?
-- Did you remember to export important data from your local database?
-- Did you update [mackup](https://github.com/lra/mackup) to the latest version and ran `mackup backup`?
+- [ ] Brewfile for this repo is upto date
+  ```zsh
+  brew bundle dump --describe
+  ```
+- [ ] Commit and push any local changes/branches to git repositories
+- [ ] Backup important documents to cloud storage e.g Google Drive, Dropbox
+- [ ] Save all work from apps which aren't synced through cloud services
+- [ ] Export important data from your local database
+- [ ] Update [mackup](https://github.com/lra/mackup) to the latest version and ran 
+  ```zsh
+  mackup backup
+  ```
+
+### Install command line tools
+
+Install Apple's Command Line Tools, which are prerequisites for Git and Homebrew.
+
+   ```zsh
+    xcode-select --install
+   ```
 
 ### Installing macOS cleanly
 
@@ -51,6 +66,19 @@ Your Mac is now ready to use!
 
 > 💡 You can use a different location than `~/.dotfiles` if you want. Make sure you also update the reference in the [`.zshrc`](./.zshrc#L2) file.
 
+## How To
+1. Create symlink for .zshrc
+   ```zsh
+   ln -s ~/.dotfiles/.zshrc ~/.zshrc
+   ```
+2. Create symlink to .gitconfig
+   ```zsh
+    ln -s ~/.dotfiles/.gitconfig ~/.gitconfig 
+   ```
+3. Update Brewfile
+   ```zsh
+      brew bundle dump --describe
+   ```
 ## Your Own Dotfiles
 
 **Please note that the instructions below assume you already have set up Oh My Zsh so make sure to first [install Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh#getting-started) before you continue.**

@@ -2,12 +2,15 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "romkatv/powerlevel10k"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@1.1"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Lightweight DNS forwarder and DHCP server
 brew "dnsmasq", restart_service: true
+# Modern replacement for 'ls'
+brew "exa"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -36,3 +39,5 @@ brew "s3cmd"
 brew "wrk"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
+# A Zsh Theme
+brew "romkatv/powerlevel10k/powerlevel10k"

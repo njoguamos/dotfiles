@@ -4,7 +4,7 @@ alias reloadshell="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
 alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
-alias code='open -a /Applications/Visual Studio Code.app "`pwd`"'
+alias code="open -a /Applications/Visual\ Studio\ Code.app '`pwd`'"
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
@@ -15,6 +15,11 @@ alias sites="cd $HOME/code"
 
 # Laravel
 alias a="php artisan"
+alias tinker="php artisan tinker"
+
+# Composer
+alias cdu="composer dumpautoload"
+alias ci="composer install"
 
 # PHP
 alias cfresh="rm -rf vendor/ composer.lock && composer i"

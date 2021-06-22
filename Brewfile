@@ -2,9 +2,12 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "nicoverbruggen/cask"
 tap "romkatv/powerlevel10k"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@1.1"
+# Open source suite of directory software
+brew "openldap"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Lightweight DNS forwarder and DHCP server
@@ -23,12 +26,16 @@ brew "libpq"
 brew "mackup"
 # Ultra relevant, instant and typo-tolerant full-text search API
 brew "meilisearch"
+# Open source relational database management system
+brew "mysql", restart_service: true
 # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "nginx", restart_service: true
 # Platform built on V8 to build network applications
 brew "node"
 # General-purpose scripting language
-brew "php", restart_service: true
+brew "php", restart_service: true, link: false
+# General-purpose scripting language
+brew "php@7.3", restart_service: true, link: true
 # Object-relational database system
 brew "postgresql", restart_service: true
 # Persistent key-value database, with built-in net interface
@@ -41,3 +48,4 @@ brew "wrk"
 brew "zsh-autosuggestions"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
+cask "phpmon"

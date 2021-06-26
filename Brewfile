@@ -24,6 +24,8 @@ brew "glib"
 brew "libpq"
 # Keep your Mac's application settings in sync
 brew "mackup"
+# Web and API based SMTP testing tool
+brew "mailhog", restart_service: true
 # Ultra relevant, instant and typo-tolerant full-text search API
 brew "meilisearch"
 # Open source relational database management system
@@ -33,9 +35,9 @@ brew "nginx", restart_service: true
 # Platform built on V8 to build network applications
 brew "node"
 # General-purpose scripting language
-brew "php", restart_service: true, link: false
+brew "php", restart_service: true
 # General-purpose scripting language
-brew "php@7.3", restart_service: true, link: true
+brew "php@7.3"
 # Object-relational database system
 brew "postgresql", restart_service: true
 # Persistent key-value database, with built-in net interface

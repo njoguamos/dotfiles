@@ -11,14 +11,20 @@ brew "openssl@1.1"
 brew "openldap"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Lightweight DNS forwarder and DHCP server
+brew "dnsmasq"
 # Modern replacement for 'ls'
 brew "exa"
 # GitHub command-line tool
 brew "gh"
+# GIF image/animation creator/editor
+brew "gifsicle"
 # Distributed revision control system
 brew "git"
 # Core application library for C
 brew "glib"
+# Utility to optimize JPEG files
+brew "jpegoptim"
 # Keep your Mac's application settings in sync
 brew "mackup"
 # Web and API based SMTP testing tool
@@ -29,12 +35,18 @@ brew "meilisearch", restart_service: true
 brew "nginx", restart_service: true
 # Platform built on V8 to build network applications
 brew "node"
+# PNG file optimizer
+brew "optipng"
 # General-purpose scripting language
 brew "php", restart_service: true
+# PNG image optimizing utility
+brew "pngquant"
 # Object-relational database system
 brew "postgresql", restart_service: true
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: true
+# Nodejs-based tool for optimizing SVG vector graphics files
+brew "svgo"
 # Internet file retriever
 brew "wget"
 # Fish-like fast/unobtrusive autosuggestions for zsh

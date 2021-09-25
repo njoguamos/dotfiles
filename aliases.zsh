@@ -4,7 +4,7 @@ alias reloadshell="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
 alias ll="/usr/local/opt/coreutils/libexec/gnubin/ls -AhlFo --color --group-directories-first"
 alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
-alias code="open -a /Applications/Visual\ Studio\ Code.app '`pwd`'"
+alias code='open -a /Applications/Visual\ Studio\ Code.app "`pwd`"'
 alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
@@ -20,21 +20,15 @@ alias tinker="php artisan tinker"
 # Composer
 alias cdu="composer dumpautoload"
 alias ci="composer install"
+alias cu="composer update"
 
 # PHP
 alias cfresh="rm -rf vendor/ composer.lock && composer i"
-#alias php8="docker run -it -w /data -v ${PWD}:/data:delegated --entrypoint php --rm registry.gitlab.com/grahamcampbell/php:8.0"
 alias composer="php -d memory_limit=-1 /usr/local/bin/composer"
 
 # JS
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
 alias watch="npm run watch"
-
-# Docker
-#alias docker-composer="docker-compose"
-
-# SQL Server
-#alias mssql="docker run -e ACCEPT_EULA=Y -e SA_PASSWORD=LaravelWow1986! -p 1433:1433 mcr.microsoft.com/mssql/server:2017-latest"
 
 # Git
 alias gst="git status"
@@ -53,3 +47,6 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
+
+# Minio
+alias myminio='minio server ~/s3 --address=127.0.0.1:8900 --console-address ":8901"'

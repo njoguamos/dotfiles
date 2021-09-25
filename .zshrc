@@ -124,3 +124,10 @@ alias list="exa --long --header"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Export php path
+# This allow mac to point to the right version of php
+export PATH=$PATH:/usr/local/opt/php@8.0/bin
+
+# Export Homebrew sbin
+export PATH="/usr/local/sbin:$PATH"

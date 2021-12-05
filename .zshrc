@@ -131,3 +131,32 @@ export PATH=$PATH:/usr/local/opt/php@8.0/bin
 
 # Export Homebrew sbin
 export PATH="/usr/local/sbin:$PATH"
+
+# Run tinker
+function tinker()
+{
+    if [ -z "$1" ]
+        then
+            php artisan tinker
+        else
+            php artisan tinker --execute="dd($1);"
+    fi
+}
+
+# Run Pest or PhpUnit
+function p() {
+    if [ -f vendor/bin/pest ]; then
+       vendor/bin/pest "$@"
+    else
+       vendor/bin/phpunit "$@"
+    fi
+ }
+
+# Run Pest or PhpUnit with filter
+function pf() {
+    if [ -f vendor/bin/pest ]; then
+       vendor/bin/pest --filter "$@"
+    else
+       vendor/bin/phpunit --filter "$@"
+    fi
+ }

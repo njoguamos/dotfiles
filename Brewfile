@@ -5,6 +5,7 @@ tap "homebrew/services"
 tap "minio/stable"
 tap "nicoverbruggen/cask"
 tap "romkatv/powerlevel10k"
+tap "timescale/tap"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
 # Apache Portable Runtime library
@@ -18,7 +19,7 @@ brew "certbot"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Lightweight DNS forwarder and DHCP server
-brew "dnsmasq"
+brew "dnsmasq", restart_service: true
 # Modern replacement for 'ls'
 brew "exa"
 # GitHub command-line tool
@@ -31,6 +32,8 @@ brew "git"
 brew "glib"
 # Utility to optimize JPEG files
 brew "jpegoptim"
+# Postgres C API library
+brew "libpq"
 # Keep your Mac's application settings in sync
 brew "mackup"
 # Web and API based SMTP testing tool
@@ -46,11 +49,15 @@ brew "node"
 # PNG file optimizer
 brew "optipng"
 # General-purpose scripting language
-brew "php", restart_service: true
+brew "php"
 # PNG image optimizing utility
 brew "pngquant"
 # Object-relational database system
-brew "postgresql@14"
+brew "postgresql@14", restart_service: true
+# Python version management
+brew "pyenv"
+# Develop and deploy code with zero configuration
+brew "railway"
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: true
 # Command-line tool for the Amazon S3 service
@@ -67,3 +74,7 @@ brew "zsh-autosuggestions"
 brew "minio/stable/minio"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
+# An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL.
+brew "timescale/tap/timescaledb"
+# GraphQL IDE for better development workflows
+cask "graphql-playground"

@@ -6,13 +6,13 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your dotfiles.
-export DOTFILES=$HOME/code/dotfiles
+export DOTFILES=$HOME/.dotfiles
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Enable completions
 autoload -Uz compinit && compinit
@@ -92,16 +92,16 @@ source $ZSH/oh-my-zsh.sh
 
 # These plugins are installed and maintained at homebrew
 # We source them to make sure they are recognised by zsh
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LC_ALL=en_GB.UTF-8
+export LANG=en_GB.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -120,8 +120,6 @@ export LANG=en_US.UTF-8
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-
-alias fresh='php artisan migrate:fresh --seed'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -161,12 +159,3 @@ function pf() {
        vendor/bin/phpunit --filter "$@"
     fi
  }
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-  eval "$(pyenv init -)"
-fi
-
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme

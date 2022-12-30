@@ -13,6 +13,7 @@ alias sites="cd $HOME/code"
 # Laravel
 alias a="php artisan"
 alias tinker="php artisan tinker"
+alias fresh='php artisan migrate:fresh --seed'
 
 # Composer
 alias cdu="composer dumpautoload"

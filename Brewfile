@@ -6,22 +6,26 @@ tap "minio/stable"
 tap "nicoverbruggen/cask"
 tap "romkatv/powerlevel10k"
 tap "timescale/tap"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Image format providing lossless and lossy compression for web images
 brew "webp"
 # Apache Portable Runtime library
 brew "apr"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@1.1"
-# General-purpose data compression with high compression ratio
-brew "xz"
 # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew "certbot"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Postgres C API library
+brew "libpq"
+# General-purpose scripting language
+brew "php"
+# Dependency Manager for PHP
+brew "composer"
 # Lightweight DNS forwarder and DHCP server
 brew "dnsmasq", restart_service: true
-# Modern replacement for 'ls'
-brew "exa"
 # GitHub command-line tool
 brew "gh"
 # GIF image/animation creator/editor
@@ -30,10 +34,10 @@ brew "gifsicle"
 brew "git"
 # Core application library for C
 brew "glib"
+# Tools and libraries to manipulate images in many formats
+brew "imagemagick"
 # Utility to optimize JPEG files
 brew "jpegoptim"
-# Postgres C API library
-brew "libpq"
 # Keep your Mac's application settings in sync
 brew "mackup"
 # Web and API based SMTP testing tool
@@ -48,16 +52,12 @@ brew "nginx", restart_service: true
 brew "node"
 # PNG file optimizer
 brew "optipng"
-# General-purpose scripting language
-brew "php"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # PNG image optimizing utility
 brew "pngquant"
 # Object-relational database system
 brew "postgresql@14", restart_service: true
-# Python version management
-brew "pyenv"
-# Develop and deploy code with zero configuration
-brew "railway"
 # Persistent key-value database, with built-in net interface
 brew "redis", restart_service: true
 # Command-line tool for the Amazon S3 service
@@ -70,11 +70,5 @@ brew "wget"
 brew "yarn"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
-# High Performance Object Storage compatible with Amazon S3 API
-brew "minio/stable/minio"
 # A Zsh Theme
 brew "romkatv/powerlevel10k/powerlevel10k"
-# An open-source time-series database optimized for fast ingest and complex queries. Fully compatible with PostgreSQL.
-brew "timescale/tap/timescaledb"
-# GraphQL IDE for better development workflows
-cask "graphql-playground"

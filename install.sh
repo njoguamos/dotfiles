@@ -23,7 +23,7 @@ brew bundle
 #mysql -u root -e "ALTER USER root@localhost IDENTIFIED WITH mysql_native_password BY 'password'; FLUSH PRIVILEGES;"
 
 # Install PHP extensions with PECL
-pecl install imagick xdebug redis swoole
+pecl install imagick xdebug redis
 
 # Install global Composer packages
 /usr/local/bin/composer global require laravel/installer laravel/valet beyondcode/expose
@@ -39,14 +39,14 @@ mkdir $HOME/code
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
-ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+ln -s $HOME/code/dotfiles/.zshrc $HOME/.zshrc
 
 # Removes .gitconfig from $HOME (if it exists) and symlinks the .gitconfig file from the .dotfiles
 rm -rf $HOME/.gitconfig
-ln -s $HOME/.dotfiles/.gitconfig $HOME/.gitconfig
+ln -s $HOME/code/dotfiles/.gitconfig $HOME/.gitconfig
 
 # Symlink the Mackup config file to the home directory
-ln -s $HOME/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
+ln -s $HOME/code/dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Set macOS preferences - we will run this last because this will reload the shell
 source .macos

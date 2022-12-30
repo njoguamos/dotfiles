@@ -6,7 +6,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your dotfiles.
-export DOTFILES=$HOME/.dotfiles
+export DOTFILES=$HOME/code/dotfiles
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -120,7 +120,6 @@ export LANG=en_US.UTF-8
 #
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
-alias list="exa --long --header"
 
 alias fresh='php artisan migrate:fresh --seed'
 
@@ -129,7 +128,7 @@ alias fresh='php artisan migrate:fresh --seed'
 
 # Export php path
 # This allow mac to point to the right version of php
-export PATH=$PATH:/usr/local/opt/php@8.0/bin
+export PATH=$PATH:/usr/local/opt/php@8.2/bin
 
 # Export Homebrew sbin
 export PATH="/usr/local/sbin:$PATH"
@@ -169,3 +168,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
 fi
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme

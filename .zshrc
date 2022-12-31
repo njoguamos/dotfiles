@@ -131,7 +131,17 @@ export PATH=$PATH:/usr/local/opt/php@8.2/bin
 # Export Homebrew sbin
 export PATH="/usr/local/sbin:$PATH"
 
+# Export Postgres path
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
+# Export composer
+export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+# Load Node global installed binaries
+export PATH="$HOME/.node/bin:$PATH"
+
+# Use project specific binaries before global ones
+export PATH="node_modules/.bin:vendor/bin:$PATH"
 
 # Run tinker
 function tinker()
@@ -150,14 +160,5 @@ function p() {
        vendor/bin/pest "$@"
     else
        vendor/bin/phpunit "$@"
-    fi
- }
-
-# Run Pest or PhpUnit with filter
-function pf() {
-    if [ -f vendor/bin/pest ]; then
-       vendor/bin/pest --filter "$@"
-    else
-       vendor/bin/phpunit --filter "$@"
     fi
  }

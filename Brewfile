@@ -64,6 +64,7 @@ cask 'tinkerwell'
 cask 'transmit'
 cask 'whatsapp'
 cask 'zoom'
+cask 'tweetbot'
 
 # Fonts
 cask 'font-inter'

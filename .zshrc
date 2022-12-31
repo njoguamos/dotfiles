@@ -131,6 +131,8 @@ export PATH=$PATH:/usr/local/opt/php@8.2/bin
 # Export Homebrew sbin
 export PATH="/usr/local/sbin:$PATH"
 
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+
 # Run tinker
 function tinker()
 {

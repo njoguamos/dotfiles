@@ -43,6 +43,3 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
-
-# Minio
-alias myminio='minio server ~/s3 --address=127.0.0.1:8900 --console-address ":8901"'

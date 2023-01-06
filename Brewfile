@@ -16,7 +16,7 @@ brew 'git'
 brew 'grep'
 brew 'httpie'
 brew 'mackup'
-#brew 'mas' # Mac App Store manager
+brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
 
@@ -38,7 +38,7 @@ brew 'php@8.1'
 brew 'composer'
 brew 'imagemagick'
 brew 'mailhog', restart_service: true
-brew 'meilisearch', restart_service: true
+brew 'meilisearch'
 brew 'mysql'
 brew 'postgresql@15'
 brew 'nginx', restart_service: true

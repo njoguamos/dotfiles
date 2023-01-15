@@ -48,6 +48,7 @@ brew 'yarn'
 
 # Apps
 cask 'raycast'
+cask 'cyberduck'
 cask 'visual-studio-code'
 cask '1password'
 cask 'figma'

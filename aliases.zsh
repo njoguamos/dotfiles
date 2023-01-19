@@ -44,3 +44,6 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
+
+# Homebrew
+alias bu="brew update && brew outdated"

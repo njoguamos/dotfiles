@@ -7,6 +7,7 @@ tap 'homebrew/services'
 tap 'minio/stable'
 tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
+tap 'axllent/apps'
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -29,7 +30,7 @@ brew 'gifsicle'
 
 # Utils
 brew 's3cmd'
-brew 'zsh-autosuggestions'
+brew 'zsh-autosuggestions'`
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # Development
@@ -37,7 +38,6 @@ brew 'php'
 brew 'php@8.1'
 brew 'composer'
 brew 'imagemagick'
-brew 'mailhog', restart_service: true
 brew 'meilisearch'
 brew 'mysql'
 brew 'postgresql@15'
@@ -45,6 +45,7 @@ brew 'nginx', restart_service: true
 brew 'node'
 brew 'redis', restart_service: true
 brew 'yarn'
+brew 'mailpit', restart_service: true
 
 # Apps
 cask 'raycast'

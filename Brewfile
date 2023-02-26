@@ -62,11 +62,10 @@ cask 'screenflow'
 cask 'tableplus'
 cask 'telegram-desktop'
 cask 'the-unarchiver'
-cask 'tinkerwell'
 cask 'transmit'
 cask 'whatsapp'
 cask 'zoom'
-cask 'tweetbot'
+cask 'obsidian'
 
 # Fonts
 cask 'font-inter'

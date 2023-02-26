@@ -30,17 +30,14 @@ brew 'gifsicle'
 
 # Utils
 brew 's3cmd'
-brew 'zsh-autosuggestions'`
+brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # Development
 brew 'php'
-brew 'php@8.1'
 brew 'composer'
 brew 'imagemagick'
 brew 'meilisearch'
-brew 'mysql'
-brew 'postgresql@15'
 brew 'nginx', restart_service: true
 brew 'node'
 brew 'redis', restart_service: true
@@ -65,7 +62,7 @@ cask 'the-unarchiver'
 cask 'transmit'
 cask 'whatsapp'
 cask 'zoom'
-cask 'obsidian'
+cask 'dbngin'
 
 # Fonts
 cask 'font-inter'

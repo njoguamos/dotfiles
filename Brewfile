@@ -20,7 +20,6 @@ brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
-brew 'rclone'
 
 # Spatie Medialibrary
 brew 'jpegoptim'
@@ -31,6 +30,7 @@ brew 'gifsicle'
 
 # Utils
 brew 's3cmd'
+brew 'rclone'
 brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 

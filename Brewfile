@@ -44,6 +44,7 @@ brew 'node'
 brew 'redis', restart_service: true
 brew 'yarn'
 brew 'mailpit', restart_service: true
+brew 'railway'
 
 # Apps
 cask 'raycast'

@@ -36,6 +36,7 @@ brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # Development
 brew 'php'
+brew 'postgresql@15'
 brew 'composer'
 brew 'imagemagick'
 brew 'meilisearch'

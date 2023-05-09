@@ -47,6 +47,7 @@ brew 'yarn'
 brew 'mailpit', restart_service: true
 brew 'railway'
 brew 'railwayapp/tap/nixpacks'
+brew 'watchman'
 
 # Apps
 cask 'raycast'

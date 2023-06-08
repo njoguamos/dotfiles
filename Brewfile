@@ -8,6 +8,7 @@ tap 'minio/stable'
 tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
 tap 'axllent/apps'
+tap 'nicoverbruggen/homebrew-cask'
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -37,6 +38,7 @@ brew 'romkatv/powerlevel10k/powerlevel10k'
 # Development
 brew 'php'
 brew 'postgresql@15'
+brew 'mysql'
 brew 'composer'
 brew 'imagemagick'
 brew 'meilisearch'
@@ -67,7 +69,7 @@ cask 'the-unarchiver'
 cask 'transmit'
 cask 'whatsapp'
 cask 'zoom'
-cask 'dbngin'
+cask 'phpmon'
 
 # Fonts
 cask 'font-inter'

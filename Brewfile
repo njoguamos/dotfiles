@@ -35,7 +35,7 @@ brew 'rclone'
 brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
-# Development
+# PHP Development
 brew 'php'
 brew 'postgresql@15'
 brew 'mysql'
@@ -50,6 +50,12 @@ brew 'mailpit', restart_service: true
 brew 'railway'
 brew 'railwayapp/tap/nixpacks'
 brew 'watchman'
+
+# Flutter Devlopment
+brew 'flutter'
+brew 'cocoapods'
+brew 'scrcpy'
+brew 'android-platform-tools'
 
 # Apps
 cask 'raycast'

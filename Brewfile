@@ -56,6 +56,7 @@ brew 'flutter'
 brew 'cocoapods'
 brew 'scrcpy'
 brew 'android-platform-tools'
+brew 'firebase-cli'
 
 # Apps
 cask 'raycast'

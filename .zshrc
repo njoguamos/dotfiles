@@ -166,3 +166,6 @@ function p() {
  # Android studio
  export ANDROID_HOME="$HOME/Library/Android/sdk"
  export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+ # Firebase CLI
+ export PATH="$PATH":"$HOME/.pub-cache/bin"

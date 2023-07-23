@@ -47,9 +47,8 @@ brew 'node'
 brew 'redis', restart_service: true
 brew 'yarn'
 brew 'mailpit', restart_service: true
-brew 'railway'
-brew 'railwayapp/tap/nixpacks'
-brew 'watchman'
+# brew 'railway'
+# brew 'watchman'
 
 # Flutter Devlopment
 brew 'flutter'

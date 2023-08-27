@@ -131,9 +131,6 @@ export PATH=$PATH:/usr/local/opt/php@8.2/bin
 # Export Homebrew sbin
 export PATH="/usr/local/sbin:$PATH"
 
-# Export Postgres path
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
-
 # Export composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 
@@ -169,3 +166,9 @@ function p() {
 
  # Firebase CLI
  export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+ # DBngin Postgres
+ export PATH="/Users/Shared/DBngin/postgresql/15.1/bin:$PATH"
+
+  # DBngin Redis
+ export PATH="/Users/Shared/DBngin/redis/7.0.0/bin:$PATH"

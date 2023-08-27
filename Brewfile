@@ -4,7 +4,6 @@ tap 'homebrew/cask-fonts'
 tap 'homebrew/bundle'
 tap 'homebrew/core'
 tap 'homebrew/services'
-tap 'minio/stable'
 tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
 tap 'axllent/apps'
@@ -36,19 +35,12 @@ brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # PHP Development
-brew 'php'
 brew 'postgresql@15'
-brew 'mysql'
 brew 'composer'
-brew 'imagemagick'
-brew 'meilisearch'
-brew 'nginx', restart_service: true
+brew 'meilisearch', restart_service: true
 brew 'node'
-brew 'redis', restart_service: true
 brew 'yarn'
 brew 'mailpit', restart_service: true
-# brew 'railway'
-# brew 'watchman'
 
 # Flutter Devlopment
 brew 'flutter'
@@ -70,12 +62,11 @@ cask 'imageoptim'
 cask 'insomnia'
 cask 'screenflow'
 cask 'tableplus'
-cask 'telegram-desktop'
 cask 'the-unarchiver'
 cask 'transmit'
 cask 'whatsapp'
-cask 'zoom'
-cask 'phpmon'
+cask 'dbngin'
+cask 'herd'
 
 # Fonts
 cask 'font-inter'

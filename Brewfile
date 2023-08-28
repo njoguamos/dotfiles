@@ -35,11 +35,10 @@ brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # PHP Development
-brew 'composer'
-brew 'meilisearch', restart_service: true
 brew 'node'
 brew 'yarn'
 brew 'mailpit', restart_service: true
+brew 'meilisearch', restart_service: true
 
 # Flutter Devlopment
 brew 'flutter'

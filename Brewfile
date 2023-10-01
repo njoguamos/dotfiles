@@ -8,6 +8,7 @@ tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
 tap 'axllent/apps'
 tap 'nicoverbruggen/homebrew-cask'
+tap 'brew tap oven-sh/bun'
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -35,7 +36,8 @@ brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # PHP Development
-brew 'node'
+brew 'node' # Replace with bun in future
+brew 'bun'
 brew 'yarn'
 brew 'mailpit', restart_service: true
 brew 'meilisearch', restart_service: true

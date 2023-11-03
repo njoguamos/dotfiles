@@ -8,7 +8,8 @@ tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
 tap 'axllent/apps'
 tap 'nicoverbruggen/homebrew-cask'
-tap 'brew tap oven-sh/bun'
+tap 'oven-sh/bun'
+tap 'humansignal/tap'
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -48,6 +49,10 @@ brew 'cocoapods'
 brew 'scrcpy'
 brew 'android-platform-tools'
 brew 'firebase-cli'
+
+# Install pyython development
+brew 'paython3'
+brew 'humansignal/tap/label-studio'
 
 # Apps
 cask '1password'

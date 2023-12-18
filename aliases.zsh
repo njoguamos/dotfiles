@@ -2,7 +2,6 @@
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
 alias reloadshell="source $HOME/.zshrc"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
-alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 alias code='open -a /Applications/Visual\ Studio\ Code.app "`pwd`"'
 alias c="clear"
 
@@ -19,13 +18,14 @@ alias fresh='php artisan migrate:fresh --seed'
 alias cdu="composer dumpautoload"
 alias ci="composer install"
 alias cu="composer update"
-
-# PHP
 alias cfresh="rm -rf vendor/ composer.lock && composer install"
 
 # JS
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
-alias watch="npm run watch"
+alias dev="npm run dev"
+
+# QwikJs
+alias qn="npm run qwik new"
 
 # Git
 alias gst="git status"

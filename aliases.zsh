@@ -23,6 +23,7 @@ alias cfresh="rm -rf vendor/ composer.lock && composer install"
 # JS
 alias nfresh="rm -rf node_modules/ package-lock.json && npm install"
 alias dev="npm run dev"
+alias fmt="npm run fmt"
 
 # QwikJs
 alias qn="npm run qwik new"

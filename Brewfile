@@ -22,6 +22,7 @@ brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
+brew '1password-cli'
 
 # Spatie Medialibrary
 brew 'jpegoptim'
@@ -48,7 +49,6 @@ brew 'flutter'
 brew 'cocoapods'
 brew 'scrcpy'
 brew 'android-platform-tools'
-brew 'firebase-cli'
 
 # Install pyython development
 brew 'paython3'

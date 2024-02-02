@@ -27,6 +27,7 @@ export MNML_RPROMPT=('mnml_cwd 20')
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="minimal"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -92,7 +93,7 @@ source $ZSH/oh-my-zsh.sh
 
 # These plugins are installed and maintained at homebrew
 # We source them to make sure they are recognised by zsh
-source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # User configuration

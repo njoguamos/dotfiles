@@ -27,6 +27,7 @@ alias fmt="npm run fmt"
 alias lint="npm run lint"
 alias build="npm run build"
 alias preview="npm run preview"
+alias ni="npm install"
 
 # QwikJs
 alias qn="npm run qwik new"

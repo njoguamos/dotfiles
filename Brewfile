@@ -38,11 +38,12 @@ brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # PHP Development
-brew 'node' # Replace with bun in future
-brew 'bun'
+# brew 'node' # Replace with bun in future
+# brew 'bun'
 brew 'yarn'
 brew 'mailpit', restart_service: true
 brew 'meilisearch', restart_service: true
+brew 'typesense/tap/typesense-server', restart_service: true
 
 # Flutter Devlopment
 brew 'flutter'
@@ -55,6 +56,7 @@ brew 'paython3'
 brew 'humansignal/tap/label-studio'
 
 # Apps
+cask 'herd'
 cask '1password'
 cask 'cyberduck'
 cask 'dbngin'

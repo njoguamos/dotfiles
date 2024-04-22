@@ -10,6 +10,7 @@ tap 'axllent/apps'
 tap 'nicoverbruggen/homebrew-cask'
 tap 'oven-sh/bun'
 tap 'humansignal/tap'
+tap 'dart-lang/dart'
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -50,6 +51,7 @@ brew 'flutter'
 brew 'cocoapods'
 brew 'scrcpy'
 brew 'android-platform-tools'
+brew 'dart'
 
 # Install pyython development
 brew 'paython3'

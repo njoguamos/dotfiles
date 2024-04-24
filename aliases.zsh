@@ -50,6 +50,8 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 
-
 # Homebrew
-alias bu="brew update && brew outdated && brew outdated --cask --greedy --verbose"
+alias bu="brew update && brew outdated"
+
+# Deployer
+alias dep='vendor/bin/dep'

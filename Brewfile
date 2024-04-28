@@ -38,9 +38,10 @@ brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # PHP Development
-brew 'node' # Replace with bun in future
+# brew 'node' 
 # brew 'bun'
 # brew 'yarn'
+brew 'pnpm'
 brew 'mailpit', restart_service: true
 # brew 'meilisearch', restart_service: true
 brew 'typesense/tap/typesense-server', restart_service: true

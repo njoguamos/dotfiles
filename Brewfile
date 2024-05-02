@@ -45,6 +45,7 @@ brew 'romkatv/powerlevel10k/powerlevel10k'
 brew 'mailpit', restart_service: true
 # brew 'meilisearch', restart_service: true
 brew 'typesense/tap/typesense-server', restart_service: true
+brew 'rsync'
 
 # Flutter Devlopment
 brew 'flutter'

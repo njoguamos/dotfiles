@@ -55,3 +55,9 @@ alias bu="brew update && brew outdated"
 
 # Deployer
 alias dep='vendor/bin/dep'
+alias pdep='libs/deployer/vendor/bin/dep'
+
+# Switch Keys
+# Alias for switching git accounts
+alias git_njogu='ssh-add -D && ssh-add ~/.ssh/id_ed25519'
+alias git_essay='ssh-add -D && ssh-add ~/.ssh/id_ed25519_essay'

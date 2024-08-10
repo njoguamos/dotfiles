@@ -8,7 +8,6 @@ tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
 tap 'axllent/apps'
 tap 'nicoverbruggen/homebrew-cask'
-tap 'oven-sh/bun'
 tap 'humansignal/tap'
 
 # Binaries
@@ -38,20 +37,17 @@ brew 'zsh-autosuggestions'
 brew 'romkatv/powerlevel10k/powerlevel10k'
 
 # PHP Development
-# brew 'node' 
-# brew 'bun'
-# brew 'yarn'
 brew 'pnpm'
 brew 'mailpit', restart_service: true
-# brew 'meilisearch', restart_service: true
-brew 'typesense/tap/typesense-server', restart_service: true
+brew 'meilisearch', restart_service: true
+# brew 'typesense/tap/typesense-server', restart_service: true
 brew 'rsync'
+brew 'ngrok/ngrok/ngrok'
 
-# Flutter Devlopment
-brew 'flutter'
-brew 'cocoapods'
+# iOs and Adroid Devlopment
 brew 'scrcpy'
 brew 'android-platform-tools'
+brew 'kdoctor'
 
 # Install pyython development
 brew 'paython3'
@@ -86,6 +82,3 @@ cask 'jetbrains-toolbox'
 # Fonts
 cask 'font-inter'
 cask 'font-jetbrains-mono'
-
-# Mac App Store
-mas 'Speedtest', id: 1153157709

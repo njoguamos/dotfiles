@@ -29,17 +29,6 @@ brew bundle --file $DOTFILES/Brewfile
 # Set default Postgres SQL default username and password
 # Command for setting up postgres
 
-# Install PHP extensions with PECL
-pecl install imagick
-pecl install xdebug
-pecl install redis
-
-# Install global Composer packages
-/usr/local/bin/composer global require laravel/installer laravel/valet beyondcode/expose
-
-# Install Laravel Valet
-$HOME/.composer/vendor/bin/valet install
-
 # Create a code directory
 mkdir $HOME/Code
 

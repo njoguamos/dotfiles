@@ -125,10 +125,6 @@ export LANG=en_GB.UTF-8
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Export php path
-# This allow mac to point to the right version of php
-export PATH=$PATH:/usr/local/opt/php@8.2/bin
-
 # Export Homebrew sbin
 export PATH="/usr/local/sbin:$PATH"
 
@@ -164,18 +160,3 @@ function p() {
  # Android studio
  export ANDROID_HOME="$HOME/Library/Android/sdk"
  export PATH="$ANDROID_HOME/platform-tools:$PATH"
-
- # Firebase CLI
- export PATH="$PATH":"$HOME/.pub-cache/bin"
-
- # DBngin Postgres
- export PATH="/Users/Shared/DBngin/postgresql/15.1/bin:$PATH"
-
-  # DBngin Redis
- export PATH="/Users/Shared/DBngin/redis/7.0.0/bin:$PATH"
-
- # Herd injected PHP binary.
-export PATH="/Users/njoguamos/Library/Application Support/Herd/bin/":$PATH
-
-# Herd injected PHP 8.2 configuration.
-export HERD_PHP_82_INI_SCAN_DIR="/Users/njoguamos/Library/Application Support/Herd/config/php/82/"

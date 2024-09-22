@@ -40,7 +40,7 @@ brew 'php'
 brew 'composer'
 
 # Node
-brew 'node@20'
+brew node
 brew pnpm
 
 # Apps

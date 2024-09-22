@@ -160,3 +160,9 @@ function p() {
  # Android studio
  export ANDROID_HOME="$HOME/Library/Android/sdk"
  export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+# Always wrap shells
+ printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
+
+# Always add the ssh key
+ ssh-add -K ~/.ssh/id_ed25519'

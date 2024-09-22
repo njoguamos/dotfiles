@@ -7,7 +7,7 @@ alias c="clear"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
-alias sites="cd $HOME/code"
+alias code="cd $HOME/code"
 
 # Laravel
 alias a="php artisan"
@@ -53,6 +53,5 @@ alias unstage="git restore --staged ."
 # Homebrew
 alias bu="brew update && brew outdated"
 
-# Deployer
-alias dep='vendor/bin/dep'
-alias pdep='libs/deployer/vendor/bin/dep'
+# Sail
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'

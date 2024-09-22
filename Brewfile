@@ -36,7 +36,12 @@ brew 'ruby'
 brew 'gradle'
 
 # PHP Development
+brew 'php'
 brew 'composer'
+
+# Node
+brew 'node@20'
+brew pnpm
 
 # Apps
 cask '1password'

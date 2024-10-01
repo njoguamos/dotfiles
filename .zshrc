@@ -162,6 +162,3 @@ function p() {
 
 # Always wrap shells
  printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
-
-# Always add the ssh key
- ssh-add -K ~/.ssh/id_ed25519'

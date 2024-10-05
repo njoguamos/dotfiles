@@ -41,7 +41,6 @@ brew 'composer'
 
 # Node
 brew node
-brew pnpm
 
 # Apps
 cask '1password'

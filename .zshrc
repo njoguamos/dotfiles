@@ -162,3 +162,7 @@ function p() {
 
 # Always wrap shells
  printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
+
+ if command -v ngrok &>/dev/null; then
+    eval "$(ngrok completion)"
+  fi

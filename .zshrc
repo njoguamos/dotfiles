@@ -160,9 +160,10 @@ function p() {
  export ANDROID_HOME="$HOME/Library/Android/sdk"
  export PATH="$ANDROID_HOME/platform-tools:$PATH"
 
-# Always wrap shells
- printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
-
- if command -v ngrok &>/dev/null; then
+  if command -v ngrok &>/dev/null; then
     eval "$(ngrok completion)"
   fi
+
+# Always wrap shells
+# For zsh subshells, add to ~/.zshrc.
+printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'

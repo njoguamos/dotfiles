@@ -136,6 +136,9 @@ export PATH="$HOME/.node/bin:$PATH"
 # Use project specific binaries before global ones
 export PATH="node_modules/.bin:vendor/bin:$PATH"
 
+# Export node
+export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+
 # Run tinker
 function tinker()
 {

@@ -223,3 +223,7 @@ dtr() {
             ;;
     esac
 }
+
+export EDITOR=nanoexport 
+
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"

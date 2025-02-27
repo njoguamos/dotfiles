@@ -16,11 +16,11 @@ brew 'ffmpeg'
 brew 'gh'
 brew 'git'
 brew 'grep'
-brew 'httpie'
 brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
+brew  '1password-cli'
 
 # Utils
 brew 'zsh-autosuggestions'

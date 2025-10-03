@@ -21,6 +21,7 @@ brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
 brew  '1password-cli'
+brew 'gnupg'
 
 # Utils
 brew 'zsh-autosuggestions'
@@ -38,6 +39,9 @@ brew 'gradle'
 # PHP Development
 brew 'php'
 brew 'composer'
+
+# IoT
+brew mosquitto
 
 # Node
 brew node

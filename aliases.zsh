@@ -1,12 +1,14 @@
 # Shortcuts
 alias copyssh="pbcopy < $HOME/.ssh/id_ed25519.pub"
-alias reloadshell="source $HOME/.zshrc"
+alias reloadshell="omz reload"
 alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 alias c="clear"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
-alias code="cd $HOME/code"
+alias projects="cd $HOME/code"
+alias library="cd $HOME/Library"
 
 # Laravel
 alias a="php artisan"
@@ -51,6 +53,3 @@ alias unstage="git restore --staged ."
 
 # Homebrew
 alias bu="brew update && brew outdated"
-
-# Sail
-alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'

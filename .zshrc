@@ -14,9 +14,6 @@ export DOTFILES=$HOME/.dotfiles
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Enable completions
-autoload -Uz compinit && compinit
-
 # Minimal - Theme Settings
 export MNML_INSERT_CHAR="$"
 export MNML_PROMPT=(mnml_git mnml_keymap)
@@ -139,7 +136,7 @@ export PATH="node_modules/.bin:vendor/bin:$PATH"
 # Export node
 export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
 
-# Run tinker
+# PHP Development - Tinker
 function tinker()
 {
     if [ -z "$1" ]
@@ -150,22 +147,19 @@ function tinker()
     fi
 }
 
-# Run Pest or PhpUnit
+# PHP Development - Pest or PhpUnit
 function p() {
     if [ -f vendor/bin/pest ]; then
        vendor/bin/pest "$@"
     else
        vendor/bin/phpunit "$@"
     fi
- }
+}
 
- # Android studio
- export ANDROID_HOME="$HOME/Library/Android/sdk"
- export PATH="$ANDROID_HOME/platform-tools:$PATH"
+# Android Development
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
 
-  if command -v ngrok &>/dev/null; then
-    eval "$(ngrok completion)"
-  fi
 
 # Always wrap shells
 # For zsh subshells, add to ~/.zshrc.
@@ -224,10 +218,12 @@ dtr() {
     esac
 }
 
-export EDITOR=nanoexport 
+# Editor Configuration
+export EDITOR=nano
 
+# Homebrew Configuration
 export HOMEBREW_DOWNLOAD_CONCURRENCY=auto
+
+# Ruby Configuration
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
-
-[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

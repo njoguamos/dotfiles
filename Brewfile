@@ -43,9 +43,7 @@ brew 'composer'
 brew 'mosquitto'
 
 # Node
-brew 'node@22'
-brew 'pnpm'
-brew 'deno'
+brew 'node@24'
 
 # Python
 brew 'python@3.14'
@@ -56,10 +54,12 @@ brew 'ruby'
 brew 'ansible'
 
 # Casks (GUI Applications)
+cask '1password'
 cask '1password-cli'
 cask 'android-platform-tools'
 cask 'imageoptim'
 cask 'tableplus'
+cask 'brave'
 cask 'telegram-desktop'
 cask 'the-unarchiver'
 cask 'whatsapp'
@@ -68,6 +68,9 @@ cask 'figma'
 cask 'orbstack'
 cask 'r-app'
 cask 'zoom'
+cask 'visual-studio-code'
+cask 'google-chrome'
+
 
 # Fonts
 cask 'font-jetbrains-mono'

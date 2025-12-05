@@ -40,7 +40,10 @@ After backing up your old Mac you may now follow these install instructions to s
     ~/.dotfiles/install.sh
     ```
 
-5. After mackup is synced with your cloud storage, restore preferences by running `mackup restore`
+5. After mackup is synced with your cloud storage, restore preferences by running 
+   ```zsh
+   mackup --config-file ~/.dotfiles/.mackup.cfg restore --forices
+   ```
 6. Restart your computer to finalize the process
 
 Your Mac is now ready to use!
@@ -67,7 +70,7 @@ When installing these dotfiles for the first time you'll need to backup all of y
 
 ```zsh
 brew install mackup
-mackup backup
+mackup --config-file ~/.dotfiles/.mackup.cfg backup --force
 ```
 
 You can tweak the shell theme, the Oh My Zsh settings and much more. Go through the files in this repo and tweak everything to your liking.

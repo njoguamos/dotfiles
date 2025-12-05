@@ -20,51 +20,54 @@ brew 'mackup'
 brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
-brew  '1password-cli'
+brew '1password-cli'
 brew 'gnupg'
 
 # Utils
 brew 'zsh-autosuggestions'
-brew 'romkatv/powerlevel10k/powerlevel10k'
-brew 'ngrok/ngrok/ngrok'
+brew 'powerlevel10k'
+brew 'wget'
+brew 'tree'
+brew 'yt-dlp'
 
-# iOs and Adroid Devlopment
+# iOS and Android Development
 brew 'scrcpy'
 brew 'android-platform-tools'
 brew 'kdoctor'
-brew 'cocoapods'
-brew 'ruby'
-brew 'gradle'
 
 # PHP Development
 brew 'php'
 brew 'composer'
 
 # IoT
-brew mosquitto
+brew 'mosquitto'
 
 # Node
-brew node
+brew 'node@22'
+brew 'pnpm'
+brew 'deno'
 
-# Apps
-cask '1password'
-cask 'cyberduck'
-cask 'github'
-cask 'brave'
+# Python
+brew 'python@3.14'
+
+# Other Tools
+brew 'certbot'
+brew 'ruby'
+brew 'ansible'
+
+# Casks (GUI Applications)
+cask '1password-cli'
+cask 'android-platform-tools'
 cask 'imageoptim'
-cask 'postman'
-cask 'raycast'
 cask 'tableplus'
 cask 'telegram-desktop'
 cask 'the-unarchiver'
-cask 'cursor'
-cask 'vlc'
-cask 'warp'
-cask 'webtorrent'
 cask 'whatsapp'
-cask 'jetbrains-toolbox'
-cask 'docker'
+cask 'screenflow'
+cask 'figma'
+cask 'orbstack'
+cask 'r-app'
+cask 'zoom'
 
 # Fonts
-cask 'font-inter'
 cask 'font-jetbrains-mono'

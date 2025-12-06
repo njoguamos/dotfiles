@@ -70,6 +70,7 @@ cask 'r-app'
 cask 'zoom'
 cask 'visual-studio-code'
 cask 'google-chrome'
+cask 'warp'
 
 
 # Fonts

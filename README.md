@@ -28,10 +28,12 @@ After backing up your old Mac you may now follow these install instructions to s
    curl https://raw.githubusercontent.com/njoguamos/dotfiles/HEAD/ssh.sh | sh -s "<your-email-address>"
    ```
 
+   Add the SSH key to your GitHub if necessary. 
+
 3. Clone this repo to `~/.dotfiles` with:
 
     ```zsh
-    git clone --recursive git@github.com:njoguamos/dotfiles.git ~/.dotfiles
+    git clone --recursive https://github.com/njoguamos/dotfiles.git ~/.dotfiles
     ```
 
 4. Run the installation with:

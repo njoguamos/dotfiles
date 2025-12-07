@@ -8,10 +8,8 @@ brew 'gh'
 brew 'git'
 brew 'grep'
 brew 'mackup'
-brew 'mas' # Mac App Store manager
 brew 'pkg-config' # https://github.com/driesvints/dotfiles/issues/20
 brew 'svn' # Needed to install fonts
-brew '1password-cli'
 brew 'gnupg'
 
 # Utils
@@ -19,11 +17,9 @@ brew 'zsh-autosuggestions'
 brew 'powerlevel10k'
 brew 'wget'
 brew 'tree'
-brew 'yt-dlp'
 
 # iOS and Android Development
 brew 'scrcpy'
-brew 'android-platform-tools'
 brew 'kdoctor'
 
 # PHP Development
@@ -50,7 +46,7 @@ cask '1password-cli'
 cask 'android-platform-tools'
 cask 'imageoptim'
 cask 'tableplus'
-cask 'brave'
+cask 'brave-browser'
 cask 'telegram-desktop'
 cask 'the-unarchiver'
 cask 'whatsapp'

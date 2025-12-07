@@ -58,6 +58,12 @@ cask 'zoom'
 cask 'visual-studio-code'
 cask 'google-chrome'
 cask 'warp'
+cask 'onedrive'
+cask 'bing-wallpaper'
+cask 'raycast'
+cask 'jetbrains-toolbox'
+cask 'webtorrent'
+cask 'image2icon'
 
 
 # Fonts

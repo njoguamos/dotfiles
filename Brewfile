@@ -1,13 +1,6 @@
 # Taps
-tap 'homebrew/cask'
-tap 'homebrew/cask-fonts'
-tap 'homebrew/bundle'
-tap 'homebrew/core'
-tap 'homebrew/services'
 tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
-tap 'axllent/apps'
-tap 'nicoverbruggen/homebrew-cask'
 tap 'humansignal/tap'
 
 # Binaries

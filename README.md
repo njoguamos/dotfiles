@@ -36,17 +36,20 @@ After backing up your old Mac you may now follow these install instructions to s
     git clone --recursive https://github.com/njoguamos/dotfiles.git ~/.dotfiles
     ```
 
-4. Run the installation with:
+> **INFO**
+> The git command may require you to install X-Code selecte tools
+
+1. Run the installation with:
 
     ```zsh
     cd ~/.dotfiles && ./fresh.sh
     ```
 
-5. After mackup is synced with your cloud storage, restore preferences by running 
+2. After mackup is synced with your cloud storage, restore preferences by running 
    ```zsh
    mackup --config-file ~/.dotfiles/.mackup.cfg restore --forices
    ```
-6. Restart your computer to finalize the process
+3. Restart your computer to finalize the process
 
 Your Mac is now ready to use!
 

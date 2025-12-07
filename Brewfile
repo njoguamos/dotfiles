@@ -1,7 +1,5 @@
 # Taps
-tap 'nicoverbruggen/cask'
 tap 'romkatv/powerlevel10k'
-tap 'humansignal/tap'
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated

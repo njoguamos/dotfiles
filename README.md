@@ -47,7 +47,7 @@ After backing up your old Mac you may now follow these install instructions to s
 
 2. After mackup is synced with your cloud storage, restore preferences by running 
    ```zsh
-   mackup --config-file ~/.dotfiles/.mackup.cfg restore --forices
+   mackup --config-file ~/.dotfiles/.mackup.cfg restore --force
    ```
 3. Restart your computer to finalize the process
 

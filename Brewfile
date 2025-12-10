@@ -1,5 +1,6 @@
 # Taps
 tap 'romkatv/powerlevel10k'
+tap 'shivammathur/extensions
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -25,6 +26,7 @@ brew 'kdoctor'
 # PHP Development
 brew 'php'
 brew 'composer'
+brew 'shivammathur/extensions/pcov@8.5'
 
 # IoT
 brew 'mosquitto'

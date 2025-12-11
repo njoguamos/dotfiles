@@ -56,6 +56,7 @@ cask 'r-app'
 cask 'visual-studio-code'
 cask 'google-chrome'
 cask 'warp'
+cask 'jordanbaird-ice'
 
 
 # Fonts

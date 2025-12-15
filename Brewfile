@@ -43,6 +43,7 @@ brew 'ruby'
 brew 'ansible'
 
 # Casks (GUI Applications)
+cask 'vlc'
 cask '1password'
 cask '1password-cli'
 cask 'android-platform-tools'

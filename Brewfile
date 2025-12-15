@@ -65,6 +65,7 @@ cask 'raycast'
 cask 'jetbrains-toolbox'
 cask 'webtorrent'
 cask 'image2icon'
+cask 'chatgpt'
 
 
 # Fonts

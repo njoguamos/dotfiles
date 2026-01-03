@@ -37,6 +37,9 @@ brew 'node@24'
 # Python
 brew 'python@3.14'
 
+# AI 
+brew 'gemini-cli
+
 # Other Tools
 brew 'certbot'
 brew 'ruby'

@@ -38,7 +38,7 @@ brew 'node@24'
 brew 'python@3.14'
 
 # AI 
-brew 'gemini-cli
+brew 'opencode'
 
 # Other Tools
 brew 'certbot'

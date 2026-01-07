@@ -70,6 +70,7 @@ cask 'jetbrains-toolbox'
 cask 'webtorrent'
 cask 'image2icon'
 cask 'chatgpt'
+cask 'opencode-desktop'
 cask 'protonvpn'
 
 

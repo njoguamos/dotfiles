@@ -1,5 +1,6 @@
 # Taps
 tap 'romkatv/powerlevel10k'
+tap 'shivammathur/extensions
 
 # Binaries
 brew 'coreutils' # Those that come with macOS are outdated
@@ -25,6 +26,7 @@ brew 'kdoctor'
 # PHP Development
 brew 'php'
 brew 'composer'
+brew 'shivammathur/extensions/pcov@8.5'
 
 # IoT
 brew 'mosquitto'
@@ -35,12 +37,17 @@ brew 'node@24'
 # Python
 brew 'python@3.14'
 
+# AI 
+brew 'opencode'
+
 # Other Tools
 brew 'certbot'
 brew 'ruby'
 brew 'ansible'
 
 # Casks (GUI Applications)
+cask 'yaak'
+cask 'vlc'
 cask '1password'
 cask '1password-cli'
 cask 'android-platform-tools'
@@ -57,6 +64,15 @@ cask 'visual-studio-code'
 cask 'google-chrome'
 cask 'warp'
 cask 'jordanbaird-ice'
+cask 'onedrive'
+cask 'bing-wallpaper'
+cask 'raycast'
+cask 'jetbrains-toolbox'
+cask 'webtorrent'
+cask 'image2icon'
+cask 'chatgpt'
+cask 'opencode-desktop'
+cask 'protonvpn'
 
 
 # Fonts

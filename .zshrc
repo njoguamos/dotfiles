@@ -134,7 +134,7 @@ export PATH="$HOME/.node/bin:$PATH"
 export PATH="node_modules/.bin:vendor/bin:$PATH"
 
 # Export node
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
 
 # PHP Development - Tinker
 function tinker()

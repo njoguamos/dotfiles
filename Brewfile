@@ -47,6 +47,7 @@ brew 'ansible'
 brew 'mole'
 
 # Casks (GUI Applications)
+cask 'ghostty'
 cask 'yaak'
 cask 'vlc'
 cask '1password'

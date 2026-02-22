@@ -44,6 +44,7 @@ brew 'opencode'
 brew 'certbot'
 brew 'ruby'
 brew 'ansible'
+brew 'mole'
 
 # Casks (GUI Applications)
 cask 'yaak'
@@ -71,7 +72,6 @@ cask 'jetbrains-toolbox'
 cask 'webtorrent'
 cask 'image2icon'
 cask 'chatgpt'
-cask 'opencode-desktop'
 cask 'protonvpn'
 
 

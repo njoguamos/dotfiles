@@ -47,6 +47,7 @@ brew 'ansible'
 brew 'mole'
 
 # Casks (GUI Applications)
+cask 'ghostty'
 cask 'yaak'
 cask 'vlc'
 cask 'bitwarden'
@@ -63,6 +64,7 @@ cask 'r-app'
 cask 'visual-studio-code'
 cask 'google-chrome'
 cask 'warp'
+cask 'jordanbaird-ice'
 cask 'onedrive'
 cask 'bing-wallpaper'
 cask 'raycast'
@@ -70,7 +72,6 @@ cask 'jetbrains-toolbox'
 cask 'webtorrent'
 cask 'image2icon'
 cask 'chatgpt'
-cask 'opencode-desktop'
 cask 'protonvpn'
 
 

@@ -34,8 +34,8 @@ brew update
 brew tap homebrew/bundle
 brew bundle --file ./Brewfile
 
-# Set default Postgres SQL default username and password
-# Command for setting up postgres
+# Setup Global composer
+composer global require laravel/installer
 
 # Create a code directory
 mkdir $HOME/Code

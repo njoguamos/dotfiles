@@ -45,7 +45,6 @@ brew 'certbot'
 brew 'ruby'
 brew 'ansible'
 brew 'mole'
-brew 'bitwarden-cli'
 brew 'bitwarden'
 
 # Casks (GUI Applications)

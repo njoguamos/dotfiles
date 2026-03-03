@@ -160,11 +160,6 @@ function p() {
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 
-
-# Always wrap shells
-# For zsh subshells, add to ~/.zshrc.
-printf '\eP$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh"}}\x9c'
-
 # Run Docker Task Runner
 dtr() {
     # Set project name to the current directory name by default

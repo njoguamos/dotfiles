@@ -48,7 +48,6 @@ brew 'mole'
 brew 'bitwarden'
 
 # Casks (GUI Applications)
-cask 'ghostty'
 cask 'yaak'
 cask 'vlc'
 '
@@ -62,7 +61,6 @@ cask 'whatsapp'
 cask 'figma'
 cask 'orbstack'
 cask 'r-app'
-cask 'visual-studio-code'
 cask 'google-chrome'
 cask 'warp'
 cask 'jordanbaird-ice'
@@ -74,6 +72,8 @@ cask 'webtorrent'
 cask 'image2icon'
 cask 'chatgpt'
 cask 'protonvpn'
+cask 'zed'
+
 
 
 # Fonts

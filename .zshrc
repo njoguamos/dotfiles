@@ -136,83 +136,6 @@ export PATH="node_modules/.bin:vendor/bin:$PATH"
 # Export node
 export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
 
-# PHP Development - Tinker
-function tinker()
-{
-    if [ -z "$1" ]
-        then
-            php artisan tinker
-        else
-            php artisan tinker --execute="dd($1);"
-    fi
-}
-
-# PHP Development - Pest or PhpUnit
-function p() {
-    if [ -f vendor/bin/pest ]; then
-       vendor/bin/pest "$@"
-    else
-       vendor/bin/phpunit "$@"
-    fi
-}
-
-# Android Development
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$ANDROID_HOME/platform-tools:$PATH"
-
-# Run Docker Task Runner
-dtr() {
-    # Set project name to the current directory name by default
-    local PROJECT_NAME=${1:-$(basename "$PWD")}
-
-    # Check if docker-compose.yml exists
-    if [[ ! -f "docker-compose.yml" ]]; then
-        echo "Error: docker-compose.yml not found in the current directory."
-        return 1
-    fi
-
-    echo "Docker Task Runner - Project: $PROJECT_NAME"
-    echo "------------------"
-    echo "1. Start services (up)"
-    echo "2. Stop and remove services (down)"
-    echo "3. Restart services"
-    echo "4. Show service logs"
-    echo "5. List running containers"
-    echo "6. Execute command in a running container"
-    echo "7. Exit"
-
-    read "choice?Enter your choice [1-7]: "
-
-    case $choice in
-        1)
-            docker compose -f docker-compose.yml -p $PROJECT_NAME up -d
-            ;;
-        2)
-            docker compose -f docker-compose.yml -p $PROJECT_NAME down
-            ;;
-        3)
-            docker compose -f docker-compose.yml -p $PROJECT_NAME down && docker compose -f docker-compose.yml -p $PROJECT_NAME up -d
-            ;;
-        4)
-            docker compose -f docker-compose.yml -p $PROJECT_NAME logs --tail=100
-            ;;
-        5)
-            docker ps
-            ;;
-        6)
-            read "container?Enter container name or ID: "
-            read "command?Enter command to execute (e.g., /bin/bash): "
-            docker exec -it $container $command
-            ;;
-        7)
-            echo "Exiting."
-            ;;
-        *)
-            echo "Invalid option. Please try again."
-            ;;
-    esac
-}
-
 # Editor Configuration
 export EDITOR=nano
 
@@ -222,3 +145,5 @@ export HOMEBREW_DOWNLOAD_CONCURRENCY=auto
 # Ruby Configuration
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PATH="/opt/homebrew/lib/ruby/gems/3.4.0/bin:$PATH"
+
+export PATH="$HOME/.local/bin:$PATH"

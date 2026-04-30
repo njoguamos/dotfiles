@@ -19,10 +19,6 @@ brew 'powerlevel10k'
 brew 'wget'
 brew 'tree'
 
-# iOS and Android Development
-brew 'scrcpy'
-brew 'kdoctor'
-
 # PHP Development
 brew 'php'
 brew 'composer'
@@ -30,6 +26,7 @@ brew 'shivammathur/extensions/pcov@8.5'
 
 # IoT
 brew 'mosquitto'
+brew 'platformio'
 
 # Node
 brew 'node@24'
@@ -50,8 +47,7 @@ brew 'bitwarden'
 # Casks (GUI Applications)
 cask 'yaak'
 cask 'vlc'
-'
-cask 'android-platform-tools'
+
 cask 'imageoptim'
 cask 'tableplus'
 cask 'brave-browser'
@@ -72,9 +68,7 @@ cask 'webtorrent'
 cask 'image2icon'
 cask 'chatgpt'
 cask 'protonvpn'
-cask 'zed'
-
-
+cask 'sublime-text'
 
 # Fonts
 cask 'font-jetbrains-mono'

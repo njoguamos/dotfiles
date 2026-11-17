@@ -4,7 +4,7 @@ This file is a conversation checklist, not a source of defaults. Setup scripts d
 
 ## Known
 
-- Keyboard shortcut: ⌘Space launches Raycast. Preserve this shortcut and do not re-enable the Spotlight shortcut over it.
+- Keyboard shortcut: free ⌘Space for Raycast by keeping Spotlight's ⌘Space shortcut disabled. The user has explicitly requested this target state.
 
 ## Ask the user
 
@@ -13,4 +13,6 @@ This file is a conversation checklist, not a source of defaults. Setup scripts d
 - Keyboard shortcuts: which other custom shortcuts or remappings should be retained?
 - Other macOS preferences: which non-default settings matter to the user?
 
-The inspected Mac currently reports Dock auto-hide on, position right, tile size 37, recent apps hidden, and trackpad tap-to-click enabled. The system's Spotlight shortcut entries 64 and 164 are disabled; the user says ⌘Space launches Raycast. Treat these only as observations from one machine; ask the user whether they are intentional before noting them as desired state. Do not export complete `defaults` domains: they can contain personal activity and account data.
+The inspected Mac currently reports Dock auto-hide on, position right, tile size 37, recent apps hidden, and trackpad tap-to-click enabled. The system's Spotlight ⌘Space shortcut entry 64 is disabled, matching the requested availability for Raycast. Treat other settings only as observations from one machine; ask before recording them as desired state. Do not export complete `defaults` domains: they can contain personal activity and account data.
+
+During setup, guide the user to System Settings → Keyboard → Keyboard Shortcuts → Spotlight and ensure the ⌘Space Spotlight shortcut is off. Do not change unrelated shortcuts. The inventory/verification should report the Spotlight shortcut state so the user can confirm it remains available for Raycast.

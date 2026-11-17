@@ -27,7 +27,7 @@ fi
 
 section "Applications"
 if [[ -d /Applications ]]; then
-  find /Applications -maxdepth 1 -mindepth 1 -name '*.app' -print \
+  find /Applications -type d -name '*.app' -prune -print \
     | sed 's#^/Applications/##; s#\.app$##' | sort
 fi
 
@@ -41,7 +41,7 @@ if [[ -n "$value" ]]; then printf 'Trackpad Clicking: %s\n' "$value"; fi
 value="$(defaults -currentHost read NSGlobalDomain com.apple.mouse.tapBehavior 2>/dev/null || true)"
 if [[ -n "$value" ]]; then printf 'Current-host tap behavior: %s\n' "$value"; fi
 if defaults read com.apple.symbolichotkeys AppleSymbolicHotKeys 2>/dev/null \
-  | awk '/^[[:space:]]*64 =/ { target=64 } /^[[:space:]]*164 =/ { target=164 } /^[[:space:]]*[0-9]+ =/ && $1 != "64" && $1 != "164" { target=0 } target && /enabled =/ { print "Symbolic shortcut " target " enabled: " $3; target=0 }'; then
+  | awk '/^[[:space:]]*64 =/ { target=64 } /^[[:space:]]*[0-9]+ =/ && $1 != "64" { target=0 } target && /enabled =/ { print "Spotlight ⌘Space shortcut enabled: " $3; target=0 }'; then
   :
 fi
 
@@ -74,4 +74,5 @@ for setting in user.name user.email gpg.format user.signingkey commit.gpgsign; d
 done
 
 section "Manual app checks"
-if [[ -d "/Applications/Little Snitch.app" ]]; then echo "Little Snitch: installed"; else echo "Little Snitch: not detected"; fi
+if [[ -d "/Applications/LuLu.app" ]]; then echo "LuLu: installed"; else echo "LuLu: not detected"; fi
+if [[ -d "/Applications/Little Snitch.app" ]]; then echo "Legacy firewall app present: Little Snitch"; fi

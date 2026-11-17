@@ -6,7 +6,9 @@ This is the agent's runbook after `bootstrap.sh` clones the repository and opens
 
 Run `scripts/inventory.sh`. Review the output with the user. Compare installed Homebrew formulae/casks and `/Applications` against `Brewfile` and `manual-apps.md`.
 
-Ask the user what should be done about apps present on the Mac but absent from `Brewfile`. Do not add applications based solely on their presence. Current explicitly known manual app: Little Snitch. The chosen AI app is selected in bootstrap and installed in addition to all current casks.
+Ask the user what should be done about apps present in `/Applications` but absent from `Brewfile`. Do not add applications based solely on their presence. Follow [manual-apps.md](manual-apps.md): list apps not managed by Homebrew, check whether a cask exists, and give official vendor/App Store links for manual installs. Do not persist the full machine-specific inventory in this public repo. The chosen AI app is selected in bootstrap and installed in addition to all current casks.
+
+Ask separately whether to install optional Android Studio or full Xcode. Default to skipping both. Neither belongs in the required manifest; Command Line Tools remain the only Xcode-related bootstrap requirement.
 
 Do not use Mackup. The old Mackup restore did not work for the user and its config has been removed. For app preferences, check the app's own account sync/iCloud support and ask the user which settings they need to migrate. Do not bulk-copy preference folders or use `--force` restore operations.
 
@@ -17,7 +19,11 @@ Ask the user to describe non-default macOS preferences they want preserved, grou
 - Keyboard shortcuts (known: ⌘Space opens Raycast)
 - Other macOS settings
 
-Use the current OS inventory only as a prompt for discussion. Do not read or export broad preference domains. Save confirmed, non-secret notes only to `~/.config/dotfiles/macos-notes.md`, not to this repo. Do not change those preferences as part of setup.
+Use the current OS inventory only as a prompt for discussion. Do not read or export broad preference domains. Save confirmed, non-secret notes only to `~/.config/dotfiles/macos-notes.md`, not to this repo. Do not change other preferences without a clear request. The user has explicitly requested ⌘Space remain free for Raycast; guide them to keep Spotlight's ⌘Space shortcut disabled in System Settings and verify the observed state.
+
+LuLu is part of the required Homebrew baseline. Tell the user to open LuLu after installation and approve its Network Extension in System Settings. If Little Snitch is present, tell the user to remove it using the vendor's Finder instructions before enabling LuLu; never remove its system extension by deleting files from Terminal.
+
+OneDrive and Google Drive are Homebrew-managed apps in the baseline. Install the apps only; have the user sign in and choose sync locations themselves. Do not open either app or start sync during setup without asking.
 
 Show the user a plan before changing any state beyond the bootstrap's selected app and baseline installation. Note which steps require a browser, 1Password sign-in, admin privileges, or a restart.
 

@@ -35,6 +35,22 @@ fi
 
 command -v brew >/dev/null 2>&1 || { echo "Homebrew is required. Run bootstrap.sh first." >&2; exit 1; }
 BREW_BIN="$(command -v brew)"
+SKIP_ONEDRIVE_CASK=0
+SKIP_BRAVE_CASK=0
+SKIP_1PASSWORD_CASK=0
+SKIP_RAYCAST_CASK=0
+if [[ -d "/Applications/OneDrive.app" ]] && ! "$BREW_BIN" list --cask onedrive >/dev/null 2>&1; then
+  SKIP_ONEDRIVE_CASK=1
+fi
+if [[ -d "/Applications/Brave Browser.app" ]] && ! "$BREW_BIN" list --cask brave-browser >/dev/null 2>&1; then
+  SKIP_BRAVE_CASK=1
+fi
+if [[ -d "/Applications/1Password.app" ]] && ! "$BREW_BIN" list --cask 1password >/dev/null 2>&1; then
+  SKIP_1PASSWORD_CASK=1
+fi
+if [[ -d "/Applications/Raycast.app" ]] && ! "$BREW_BIN" list --cask raycast >/dev/null 2>&1; then
+  SKIP_RAYCAST_CASK=1
+fi
 
 ZSHRC="$HOME/.zshrc"
 if [[ -L "$ZSHRC" ]]; then
@@ -51,6 +67,18 @@ if (( APPROVED == 0 )); then
   [[ -r /dev/tty && -w /dev/tty ]] || { echo "Run setup interactively, or have the agent obtain your approval before using --yes." >&2; exit 1; }
   printf 'The following required Homebrew manifest will be applied:\n\n'
   cat "$DOTFILES_DIR/Brewfile"
+  if (( SKIP_ONEDRIVE_CASK == 1 )); then
+    printf '\nOneDrive is already installed outside Homebrew. Its cask will be skipped on this Mac to avoid reinstalling the active sync app.\n'
+  fi
+  if (( SKIP_BRAVE_CASK == 1 )); then
+    printf 'Brave is already installed outside Homebrew. Its cask will be skipped on this Mac to avoid replacing the current browser app.\n'
+  fi
+  if (( SKIP_1PASSWORD_CASK == 1 )); then
+    printf '1Password is already installed outside Homebrew. Its cask will be skipped on this Mac to preserve the current installation.\n'
+  fi
+  if (( SKIP_RAYCAST_CASK == 1 )); then
+    printf 'Raycast is already installed outside Homebrew. Its cask will be skipped on this Mac to preserve the current installation.\n'
+  fi
   printf '\nThis installs packages and may request administrator approval. Apply the manifest and link the managed Zsh config? [y/N] '
   IFS= read -r answer </dev/tty || answer=""
   [[ "$answer" =~ ^[Yy]$ ]] || { echo "Setup cancelled."; exit 0; }
@@ -59,7 +87,21 @@ else
 fi
 
 echo "Installing required Homebrew packages from Brewfile..."
-"$BREW_BIN" bundle --file "$DOTFILES_DIR/Brewfile"
+BUNDLE_FILE="$DOTFILES_DIR/Brewfile"
+BUNDLE_TMP=""
+if (( SKIP_ONEDRIVE_CASK == 1 || SKIP_BRAVE_CASK == 1 || SKIP_1PASSWORD_CASK == 1 || SKIP_RAYCAST_CASK == 1 )); then
+  BUNDLE_TMP="$(mktemp "${TMPDIR:-/tmp}/dotfiles-Brewfile.XXXXXX")"
+  awk -v skip_onedrive="$SKIP_ONEDRIVE_CASK" -v skip_brave="$SKIP_BRAVE_CASK" \
+    -v skip_1password="$SKIP_1PASSWORD_CASK" -v skip_raycast="$SKIP_RAYCAST_CASK" \
+    '$0 == "cask \"onedrive\"" && skip_onedrive { next }
+     $0 == "cask \"brave-browser\"" && skip_brave { next }
+     $0 == "cask \"1password\"" && skip_1password { next }
+     $0 == "cask \"raycast\"" && skip_raycast { next }
+     { print }' "$DOTFILES_DIR/Brewfile" > "$BUNDLE_TMP"
+  BUNDLE_FILE="$BUNDLE_TMP"
+  trap '[[ -z "${BUNDLE_TMP:-}" ]] || rm -f "$BUNDLE_TMP"' EXIT
+fi
+"$BREW_BIN" bundle --file "$BUNDLE_FILE"
 
 if [[ -n "$AGENT" ]]; then
   case "$AGENT" in

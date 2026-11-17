@@ -35,6 +35,33 @@ if [[ -n "$(git -C "$DOTFILES_DIR" status --porcelain)" ]]; then
   exit 1
 fi
 
+BUNDLE_FILE="$DOTFILES_DIR/Brewfile"
+BUNDLE_TMP=""
+SKIP_ONEDRIVE_CASK=0
+SKIP_BRAVE_CASK=0
+SKIP_1PASSWORD_CASK=0
+SKIP_RAYCAST_CASK=0
+if [[ -d "/Applications/OneDrive.app" ]] && ! brew list --cask onedrive >/dev/null 2>&1; then SKIP_ONEDRIVE_CASK=1; fi
+if [[ -d "/Applications/Brave Browser.app" ]] && ! brew list --cask brave-browser >/dev/null 2>&1; then SKIP_BRAVE_CASK=1; fi
+if [[ -d "/Applications/1Password.app" ]] && ! brew list --cask 1password >/dev/null 2>&1; then SKIP_1PASSWORD_CASK=1; fi
+if [[ -d "/Applications/Raycast.app" ]] && ! brew list --cask raycast >/dev/null 2>&1; then SKIP_RAYCAST_CASK=1; fi
+if (( SKIP_ONEDRIVE_CASK == 1 || SKIP_BRAVE_CASK == 1 || SKIP_1PASSWORD_CASK == 1 || SKIP_RAYCAST_CASK == 1 )); then
+  BUNDLE_TMP="$(mktemp "${TMPDIR:-/tmp}/dotfiles-Brewfile.XXXXXX")"
+  awk -v skip_onedrive="$SKIP_ONEDRIVE_CASK" -v skip_brave="$SKIP_BRAVE_CASK" \
+    -v skip_1password="$SKIP_1PASSWORD_CASK" -v skip_raycast="$SKIP_RAYCAST_CASK" \
+    '$0 == "cask \"onedrive\"" && skip_onedrive { next }
+     $0 == "cask \"brave-browser\"" && skip_brave { next }
+     $0 == "cask \"1password\"" && skip_1password { next }
+     $0 == "cask \"raycast\"" && skip_raycast { next }
+     { print }' "$DOTFILES_DIR/Brewfile" > "$BUNDLE_TMP"
+  BUNDLE_FILE="$BUNDLE_TMP"
+  if (( SKIP_ONEDRIVE_CASK == 1 )); then echo "OneDrive is already installed outside Homebrew; its cask will be skipped to protect the current sync setup."; fi
+  if (( SKIP_BRAVE_CASK == 1 )); then echo "Brave is already installed outside Homebrew; its cask will be skipped to preserve the current browser app."; fi
+  if (( SKIP_1PASSWORD_CASK == 1 )); then echo "1Password is already installed outside Homebrew; its cask will be skipped to preserve the current installation."; fi
+  if (( SKIP_RAYCAST_CASK == 1 )); then echo "Raycast is already installed outside Homebrew; its cask will be skipped to preserve the current installation."; fi
+  trap '[[ -z "${BUNDLE_TMP:-}" ]] || rm -f "$BUNDLE_TMP"' EXIT
+fi
+
 git -C "$DOTFILES_DIR" fetch origin
 UPSTREAM="$(git -C "$DOTFILES_DIR" rev-parse --abbrev-ref --symbolic-full-name '@{upstream}')"
 brew update
@@ -68,6 +95,6 @@ if (( APPROVED == 0 )); then
 fi
 
 git -C "$DOTFILES_DIR" merge --ff-only "$UPSTREAM_SHA"
-brew bundle upgrade --file "$DOTFILES_DIR/Brewfile"
+brew bundle upgrade --file "$BUNDLE_FILE"
 
 echo "Update complete. Run scripts/verify.sh to review setup health."

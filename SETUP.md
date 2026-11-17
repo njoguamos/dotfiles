@@ -1,0 +1,54 @@
+# Guided setup
+
+This is the agent's runbook after `bootstrap.sh` clones the repository and opens the chosen AI client.
+
+## 1. Inventory and plan
+
+Run `scripts/inventory.sh`. Review the output with the user. Compare installed Homebrew formulae/casks and `/Applications` against `Brewfile` and `manual-apps.md`.
+
+Ask the user what should be done about apps present on the Mac but absent from `Brewfile`. Do not add applications based solely on their presence. Current explicitly known manual app: Little Snitch. The chosen AI app is selected in bootstrap and installed in addition to all current casks.
+
+Do not use Mackup. The old Mackup restore did not work for the user and its config has been removed. For app preferences, check the app's own account sync/iCloud support and ask the user which settings they need to migrate. Do not bulk-copy preference folders or use `--force` restore operations.
+
+Ask the user to describe non-default macOS preferences they want preserved, grouped under:
+
+- Dock
+- Trackpad and mouse
+- Keyboard shortcuts (known: ⌘Space opens Raycast)
+- Other macOS settings
+
+Use the current OS inventory only as a prompt for discussion. Do not read or export broad preference domains. Save confirmed, non-secret notes only to `~/.config/dotfiles/macos-notes.md`, not to this repo. Do not change those preferences as part of setup.
+
+Show the user a plan before changing any state beyond the bootstrap's selected app and baseline installation. Note which steps require a browser, 1Password sign-in, admin privileges, or a restart.
+
+## 2. Apply configuration
+
+After the user approves the displayed plan and manifest, run `scripts/setup.sh --yes`. It is idempotent and installs the required Homebrew manifest and the AI app chosen during bootstrap. Without `--yes`, the script displays the manifest and prompts interactively.
+
+Shell configuration is standalone Zsh and does not require Oh My Zsh. If an existing `~/.zshrc` is a regular file, setup saves a timestamped backup before linking the repo version. It never deletes the backup. If `.zshrc` belongs to another symlink manager, stop and ask how to proceed.
+
+## 3. 1Password and GitHub SSH
+
+Ask the user to:
+
+1. Open 1Password and sign in. Unlock it when the Mac restarts as needed.
+2. In 1Password Settings → Developer, enable the SSH Agent. Add or create the GitHub SSH key item in 1Password and add its **public** key to GitHub's SSH keys.
+3. Configure `~/.ssh/config` using 1Password's current SSH Agent instructions. Keep the socket path and key selection local to the machine. Do not create a second private key in `~/.ssh`.
+4. Configure Git's local identity on this Mac, then enable SSH commit signing with the public key from 1Password. Use the local GitHub email if the user prefers to keep their email private.
+5. Create `~/.config/dotfiles/allowed_signers` with one line in Git's allowed-signers format: `<GitHub email> namespaces="git" <SSH public key>`. Keep this file local, then run `git config --global gpg.ssh.allowedSignersFile ~/.config/dotfiles/allowed_signers` so Git can verify SSH signatures locally.
+6. In GitHub settings, verify the SSH key is available and that signed commits appear as verified.
+
+The user can run `gh auth login` for HTTPS/API workflows; it is separate from SSH Git transport. Never ask them to paste credentials.
+
+## 4. Verify and finish
+
+Run `scripts/verify.sh`. It checks the selected AI app, Homebrew manifests, shell link, 1Password CLI/sign-in status, the active SSH agent, GitHub SSH authentication, and Git signing configuration. Some checks require the user to unlock 1Password first. For an SSH-authenticated GitHub check, the agent should interpret GitHub's normal success message even if `ssh -T` returns a nonzero exit code.
+
+Summarize completed items, manual app downloads, any blocked steps, and the commands `scripts/verify.sh` and `scripts/update.sh` for later use. Restart only if macOS or an app specifically requires it.
+
+## Later maintenance
+
+- Verify: `~/.dotfiles/scripts/verify.sh`
+- Update: preview with `~/.dotfiles/scripts/update.sh --preview`; after user approval, apply only the exact reviewed commit with `~/.dotfiles/scripts/update.sh --yes --expected-upstream <SHA>`.
+- Add/remove packages by editing `Brewfile` and reviewing the diff before applying.
+- Re-run setup safely: `~/.dotfiles/scripts/setup.sh`

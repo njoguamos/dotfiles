@@ -5,9 +5,11 @@ DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 ok=0
 attention=0
 optional=0
+skipped=0
 
 pass() { printf 'PASS       %s\n' "$*"; ok=$((ok + 1)); }
 needs() { printf 'NEEDS WORK %s\n' "$*"; attention=$((attention + 1)); }
+skip() { printf 'SKIPPED    %s\n' "$*"; skipped=$((skipped + 1)); }
 maybe() { printf 'OPTIONAL   %s\n' "$*"; optional=$((optional + 1)); }
 
 printf 'Setup verification (%s)\n' "$(date '+%Y-%m-%d %H:%M:%S %Z')"
@@ -17,37 +19,17 @@ if xcode-select -p >/dev/null 2>&1; then pass "Apple Command Line Tools"; else n
 
 if command -v brew >/dev/null 2>&1; then
   pass "Homebrew available"
-  BUNDLE_FILE="$DOTFILES_DIR/Brewfile"
-  BUNDLE_TMP=""
-  SKIP_ONEDRIVE_CASK=0
-  SKIP_BRAVE_CASK=0
-  SKIP_1PASSWORD_CASK=0
-  SKIP_RAYCAST_CASK=0
-  if [[ -d "/Applications/OneDrive.app" ]] && ! brew list --cask onedrive >/dev/null 2>&1; then SKIP_ONEDRIVE_CASK=1; fi
-  if [[ -d "/Applications/Brave Browser.app" ]] && ! brew list --cask brave-browser >/dev/null 2>&1; then SKIP_BRAVE_CASK=1; fi
-  if [[ -d "/Applications/1Password.app" ]] && ! brew list --cask 1password >/dev/null 2>&1; then SKIP_1PASSWORD_CASK=1; fi
-  if [[ -d "/Applications/Raycast.app" ]] && ! brew list --cask raycast >/dev/null 2>&1; then SKIP_RAYCAST_CASK=1; fi
-  if (( SKIP_ONEDRIVE_CASK == 1 || SKIP_BRAVE_CASK == 1 || SKIP_1PASSWORD_CASK == 1 || SKIP_RAYCAST_CASK == 1 )); then
-    BUNDLE_TMP="$(mktemp "${TMPDIR:-/tmp}/dotfiles-Brewfile.XXXXXX")"
-    awk -v skip_onedrive="$SKIP_ONEDRIVE_CASK" -v skip_brave="$SKIP_BRAVE_CASK" \
-      -v skip_1password="$SKIP_1PASSWORD_CASK" -v skip_raycast="$SKIP_RAYCAST_CASK" \
-      '$0 == "cask \"onedrive\"" && skip_onedrive { next }
-       $0 == "cask \"brave-browser\"" && skip_brave { next }
-       $0 == "cask \"1password\"" && skip_1password { next }
-       $0 == "cask \"raycast\"" && skip_raycast { next }
-       { print }' "$DOTFILES_DIR/Brewfile" > "$BUNDLE_TMP"
-    BUNDLE_FILE="$BUNDLE_TMP"
-  fi
-  if brew bundle check --file "$BUNDLE_FILE" >/dev/null 2>&1; then
-    pass "Baseline Homebrew manifest installed"
-    if [[ "$SKIP_ONEDRIVE_CASK" == 1 ]]; then maybe "Existing OneDrive app left unmanaged to protect its current sync settings"; fi
-    if [[ "$SKIP_BRAVE_CASK" == 1 ]]; then maybe "Existing Brave installation left unmanaged"; fi
-    if [[ "$SKIP_1PASSWORD_CASK" == 1 ]]; then maybe "Existing 1Password installation left unmanaged"; fi
-    if [[ "$SKIP_RAYCAST_CASK" == 1 ]]; then maybe "Existing Raycast installation left unmanaged"; fi
+  source "$DOTFILES_DIR/scripts/package-plan.sh"
+  if build_package_plan < "$DOTFILES_DIR/Brewfile"; then
+    report_preserved_casks
+    if brew bundle check --no-upgrade --file "$BUNDLE_FILE" >/dev/null 2>&1; then
+      pass "Required packages in this Mac’s Homebrew plan are installed"
+    else
+      needs "Preview scripts/setup.sh --preview to review missing packages"
+    fi
   else
-    needs "Run scripts/setup.sh to install baseline packages"
+    needs "Could not build the Homebrew package plan"
   fi
-  [[ -z "$BUNDLE_TMP" ]] || rm -f "$BUNDLE_TMP"
   for cli in git gh; do
     if command -v "$cli" >/dev/null 2>&1; then pass "$cli command-line tool available"; else needs "Install or expose the $cli command-line tool"; fi
   done
@@ -59,7 +41,10 @@ if [[ -L "$HOME/.zshrc" && "$(readlink "$HOME/.zshrc")" == "$DOTFILES_DIR/.zshrc
 spotlight_shortcut="$(defaults read com.apple.symbolichotkeys AppleSymbolicHotKeys 2>/dev/null \
   | awk '/^[[:space:]]*64 =/ { in_spotlight=1 } /^[[:space:]]*[0-9]+ =/ && $1 != "64" { in_spotlight=0 } in_spotlight && /enabled =/ { print $3; exit }')"
 if [[ "$spotlight_shortcut" == "0;" ]]; then
-  pass "Spotlight ⌘Space shortcut is disabled for Raycast"
+  pass "Spotlight ⌘Space shortcut is disabled"
+  maybe "Press ⌘Space to confirm Raycast opens"
+elif [[ -z "$spotlight_shortcut" ]]; then
+  needs "Spotlight shortcut state unknown. Check Keyboard Shortcuts in System Settings"
 else
   needs "Disable Spotlight ⌘Space in System Settings so Raycast can use it"
 fi
@@ -82,16 +67,20 @@ else
   needs "Install 1Password CLI from the baseline"
 fi
 
+agent_ready=0
 if [[ -n "${SSH_AUTH_SOCK:-}" && -S "$SSH_AUTH_SOCK" ]] && ssh-add -l >/dev/null 2>&1; then
+  agent_ready=1
   pass "SSH agent responds and has at least one key (key details hidden)"
 else
   needs "Unlock 1Password and configure its SSH Agent; key paths and values stay local"
 fi
 
-if ssh -o BatchMode=yes -o ConnectTimeout=8 -T git@github.com 2>&1 | grep -qi 'successfully authenticated'; then
+if (( agent_ready == 0 )); then
+  skip "GitHub SSH authentication. Unlock 1Password and rerun verification."
+elif ssh -o StrictHostKeyChecking=yes -o UpdateHostKeys=no -o BatchMode=yes -o ConnectTimeout=8 -T git@github.com 2>&1 | grep -qi 'successfully authenticated'; then
   pass "GitHub SSH authentication"
 else
-  needs "Add the 1Password public key to GitHub and configure ~/.ssh/config"
+  needs "GitHub SSH check failed. Check connectivity, host trust, and the registered public key"
 fi
 
 if [[ "$(git config --global --get gpg.format 2>/dev/null || true)" == ssh \
@@ -101,11 +90,15 @@ if [[ "$(git config --global --get gpg.format 2>/dev/null || true)" == ssh \
 else
   needs "Configure Git SSH signing with the public key from 1Password"
 fi
-signers_file="$(git config --global --get gpg.ssh.allowedSignersFile 2>/dev/null || true)"
-if [[ -n "$signers_file" && -f "$signers_file" ]] && git verify-commit HEAD >/dev/null 2>&1; then
+signers_file="$(git config --global --path --get gpg.ssh.allowedSignersFile 2>/dev/null || true)"
+if [[ -z "$signers_file" || ! -r "$signers_file" ]]; then
+  needs "Configure a readable local Git allowed-signers file"
+elif ! git -C "$DOTFILES_DIR" cat-file commit HEAD 2>/dev/null | awk '/^$/{exit} /^gpgsig -----BEGIN SSH SIGNATURE-----$/{found=1} END{exit !found}'; then
+  skip "The dotfiles HEAD has no SSH signature. Verify a known SSH-signed commit."
+elif git -C "$DOTFILES_DIR" verify-commit HEAD >/dev/null 2>&1; then
   pass "Local verification of the current SSH-signed commit"
 else
-  needs "Create a local allowed_signers file and configure gpg.ssh.allowedSignersFile"
+  needs "HEAD has an SSH signature that could not be verified. Check the signer entry and public key"
 fi
 
 if brew list --cask lulu >/dev/null 2>&1 && [[ -d "/Applications/LuLu.app" ]]; then
@@ -121,6 +114,6 @@ fi
 if [[ -d "/Applications/Android Studio.app" ]]; then maybe "Optional app present: Android Studio"; else maybe "Optional app absent: Android Studio"; fi
 if [[ -d "/Applications/Xcode.app" ]]; then maybe "Optional app present: full Xcode"; else maybe "Optional app absent: full Xcode"; fi
 
-printf '\nSummary: %d passed, %d need attention, %d optional\n' "$ok" "$attention" "$optional"
+printf '\nSummary: %d passed, %d need attention, %d optional, %d skipped\n' "$ok" "$attention" "$optional" "$skipped"
 if (( attention > 0 )); then exit 1; fi
 exit 0

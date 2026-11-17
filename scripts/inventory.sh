@@ -17,18 +17,16 @@ printf 'Login shell: %s\n' "${SHELL##*/}"
 section "Homebrew"
 if has brew; then
   brew --version | head -n 1
-  printf '\nFormulae:\n'
-  brew list --formula --versions 2>/dev/null || true
-  printf '\nCasks:\n'
-  brew list --cask --versions 2>/dev/null || true
+  DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
+  export HOMEBREW_NO_AUTO_UPDATE=1
+  if ! ruby "$DOTFILES_DIR/scripts/package-inventory.rb" "$DOTFILES_DIR/Brewfile"; then
+    echo "Package and app comparison unavailable."
+  fi
 else
   echo "Not installed"
-fi
-
-section "Applications"
-if [[ -d /Applications ]]; then
-  find /Applications -type d -name '*.app' -prune -print \
-    | sed 's#^/Applications/##; s#\.app$##' | sort
+  if [[ -d /Applications ]]; then
+    find /Applications -type d -name '*.app' -prune -print | sort
+  fi
 fi
 
 section "Selected macOS preferences (observed only)"

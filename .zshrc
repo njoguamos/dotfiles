@@ -28,6 +28,8 @@ if [[ -S "$OP_SSH_AUTH_SOCK" ]]; then
 fi
 
 alias c='clear'
+alias reloadshell='source ~/.zprofile'
+alias bu='brew update && brew outdated'
 alias gst='git status --short --branch'
 alias gl='git log --oneline --decorate -12'
 alias dotfiles='cd "$DOTFILES"'
@@ -40,3 +42,6 @@ if [[ -n "${BREW_PREFIX:-}" \
 else
   PROMPT='%F{cyan}%1~%f %# '
 fi
+
+# Added by Kiri: its docker and kiri commands (kiri setup --uninstall removes this)
+case ":$PATH:" in *":$HOME/.kiri/bin:"*) ;; *) export PATH="$PATH:$HOME/.kiri/bin" ;; esac

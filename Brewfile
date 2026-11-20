@@ -3,7 +3,6 @@
 # its restore workflow failed and is no longer used. Homebrew resolves dependencies.
 # The pcov formulae use the existing shivammathur/extensions tap.
 tap "shivammathur/extensions"
-tap "libracoder/kiri"
 
 brew "ansible"
 brew "certbot"
@@ -41,7 +40,6 @@ cask "figma"
 cask "font-jetbrains-mono"
 cask "google-drive"
 cask "imageoptim"
-cask "kiri"
 cask "lulu"
 cask "onedrive"
 cask "opencode-desktop"

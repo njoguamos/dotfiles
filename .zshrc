@@ -17,15 +17,17 @@ add_to_path "$HOME/.composer/vendor/bin"
 if command -v brew >/dev/null 2>&1; then
   BREW_PREFIX="$(brew --prefix)"
   add_to_path "$BREW_PREFIX/opt/node@24/bin"
+  # Homebrew Ruby is keg-only; prefer it and its gem command over macOS Ruby.
+  add_to_path "$BREW_PREFIX/opt/ruby/bin"
+  if [[ -x "$BREW_PREFIX/opt/ruby/bin/ruby" ]]; then
+    add_to_path "$("$BREW_PREFIX/opt/ruby/bin/ruby" -r rubygems -e 'print Gem.bindir' 2>/dev/null)"
+  fi
   [[ -r "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] \
     && source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 fi
 
-# Let OpenSSH and tools using SSH_AUTH_SOCK reach the 1Password SSH Agent.
-OP_SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-if [[ -S "$OP_SSH_AUTH_SOCK" ]]; then
-  export SSH_AUTH_SOCK="$OP_SSH_AUTH_SOCK"
-fi
+# Use the Bitwarden desktop SSH agent.
+export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
 
 alias c='clear'
 alias reloadshell='source ~/.zprofile'

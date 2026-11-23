@@ -51,12 +51,11 @@ for cli in codex claude opencode; do
   if has "$cli"; then printf '%s CLI: installed\n' "$cli"; fi
 done
 
-section "1Password and SSH (status only)"
-if has op; then
-  echo "1Password CLI: installed"
-  if op whoami >/dev/null 2>&1; then echo "1Password CLI session: signed in"; else echo "1Password CLI session: not signed in"; fi
+section "Bitwarden and SSH (status only)"
+if [[ -d /Applications/Bitwarden.app ]]; then
+  echo "Bitwarden desktop app: installed"
 else
-  echo "1Password CLI: missing"
+  echo "Bitwarden desktop app: not detected"
 fi
 if [[ -n "${SSH_AUTH_SOCK:-}" && -S "$SSH_AUTH_SOCK" ]]; then
   echo "SSH agent socket: available (path hidden)"

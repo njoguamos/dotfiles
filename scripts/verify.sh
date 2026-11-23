@@ -33,6 +33,12 @@ if command -v brew >/dev/null 2>&1; then
   for cli in git gh; do
     if command -v "$cli" >/dev/null 2>&1; then pass "$cli command-line tool available"; else needs "Install or expose the $cli command-line tool"; fi
   done
+  ruby_gem="$(brew --prefix)/opt/ruby/bin/gem"
+  if [[ -x "$ruby_gem" ]] && "$ruby_gem" list --local --exact --installed kamal >/dev/null 2>&1; then
+    pass "Kamal gem installed for Homebrew Ruby"
+  else
+    needs "Install Kamal for Homebrew Ruby with the approved setup"
+  fi
 else
   needs "Install Homebrew"
 fi
@@ -60,11 +66,11 @@ else
   maybe "No AI app selection recorded; set one by rerunning bootstrap or setup.sh --agent …"
 fi
 
-if command -v op >/dev/null 2>&1; then
-  pass "1Password CLI installed"
-  if op whoami >/dev/null 2>&1; then pass "1Password CLI signed in"; else needs "Sign in to 1Password and enable its SSH Agent"; fi
+if [[ -d /Applications/Bitwarden.app ]]; then
+  pass "Bitwarden desktop app present"
+  maybe "Confirm Bitwarden is signed in and its SSH agent is enabled"
 else
-  needs "Install 1Password CLI from the baseline"
+  needs "Install Bitwarden from the baseline and sign in"
 fi
 
 agent_ready=0
@@ -72,11 +78,11 @@ if [[ -n "${SSH_AUTH_SOCK:-}" && -S "$SSH_AUTH_SOCK" ]] && ssh-add -l >/dev/null
   agent_ready=1
   pass "SSH agent responds and has at least one key (key details hidden)"
 else
-  needs "Unlock 1Password and configure its SSH Agent; key paths and values stay local"
+  needs "Unlock Bitwarden and configure its SSH Agent; key paths and values stay local"
 fi
 
 if (( agent_ready == 0 )); then
-  skip "GitHub SSH authentication. Unlock 1Password and rerun verification."
+  skip "GitHub SSH authentication. Unlock Bitwarden and rerun verification."
 elif ssh -o StrictHostKeyChecking=yes -o UpdateHostKeys=no -o BatchMode=yes -o ConnectTimeout=8 -T git@github.com 2>&1 | grep -qi 'successfully authenticated'; then
   pass "GitHub SSH authentication"
 else
@@ -88,7 +94,15 @@ if [[ "$(git config --global --get gpg.format 2>/dev/null || true)" == ssh \
    && -n "$(git config --global --get user.signingkey 2>/dev/null || true)" ]]; then
   pass "Git SSH commit signing configured (identity hidden)"
 else
-  needs "Configure Git SSH signing with the public key from 1Password"
+  needs "Configure Git SSH signing with the public key from Bitwarden"
+fi
+signing_program="$(git config --get gpg.ssh.program 2>/dev/null || true)"
+if [[ "$signing_program" == *1Password* || "$signing_program" == *1password* || "$signing_program" == *op-ssh-sign* ]]; then
+  needs "Git still uses the 1Password SSH signing program; configure Bitwarden signing"
+elif [[ -n "$signing_program" ]]; then
+  maybe "Git uses a custom SSH signing program; confirm it works with Bitwarden"
+else
+  pass "Git uses the default OpenSSH signing program"
 fi
 signers_file="$(git config --global --path --get gpg.ssh.allowedSignersFile 2>/dev/null || true)"
 if [[ -z "$signers_file" || ! -r "$signers_file" ]]; then

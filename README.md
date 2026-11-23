@@ -15,18 +15,19 @@ The setup is intentionally reviewable: package lists are explicit, scripts are s
 
 3. Choose Codex (the default), Claude, or OpenCode. The script installs only the chosen AI app, then asks whether to open the repo in that app.
 4. In the agent, follow [AGENTS.md](AGENTS.md) and [SETUP.md](SETUP.md). The agent will inventory the Mac, review the manifests and scripts with you, show a plan, then run the setup steps you approve.
-5. Sign into 1Password when prompted and enable its SSH Agent. Add the 1Password public key to GitHub, configure Git signing, and complete the verification workflow.
+5. Sign into Bitwarden and enable its [SSH agent](https://bitwarden.com/help/ssh-agent/) to use keys stored in the vault. No local SSH private key is required. Securely migrate the existing SSH key as needed, register its public key with GitHub, configure Git signing, and complete the verification workflow.
 
 If Command Line Tools are missing, macOS opens its installer. Finish that installation, then rerun the bootstrap command.
 
 ## Keep the repo private of personal data
 
-Do not commit passwords, recovery codes, SSH private keys, account email addresses, machine names, app tokens, or private repository URLs. Put machine-specific notes in `~/.config/dotfiles/`, which is outside this repository. Configure Git identity on the machine itself. SSH private keys should stay in 1Password.
+Do not commit passwords, recovery codes, SSH private keys, account email addresses, machine names, app tokens, or private repository URLs. Put machine-specific notes in `~/.config/dotfiles/`, which is outside this repository. Configure Git identity on the machine itself. SSH private keys should stay in the password manager.
 
 ## Workflows
 
-- `scripts/inventory.sh` — read-only OS, Homebrew, app, shell, 1Password, SSH, and Git configuration inventory. It avoids printing account identifiers or secret values.
-- `scripts/setup.sh` — install the reviewed baseline and selected AI app; back up and link shell configuration; guide 1Password and Git setup.
+- `scripts/inventory.sh` — read-only OS, Homebrew, app, shell, Bitwarden, SSH, and Git configuration inventory. It avoids printing account identifiers or secret values.
+- `scripts/setup.sh` — install the reviewed baseline and selected AI app; back up and link shell configuration; guide Bitwarden and Git setup.
+- `scripts/configure-git-signing.sh` — accept the chosen Bitwarden SSH public key and configure local Git commit signing.
 - `scripts/verify.sh` — report each setup requirement as pass, needs attention, or optional.
 - `scripts/update.sh` — preview incoming repo/package updates, then update this checkout and its Homebrew manifest; it does not update macOS or edit macOS preferences.
 

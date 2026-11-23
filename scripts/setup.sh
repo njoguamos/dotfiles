@@ -60,6 +60,7 @@ if "$BREW_BIN" bundle check --no-upgrade --verbose --file "$BUNDLE_FILE"; then
   printf 'All requirements in this Homebrew plan are installed.\n'
 fi
 printf '\nShell: add Homebrew to ~/.zprofile when writable and link ~/.zshrc, backing up an existing regular file.\n'
+printf 'Ruby gems: install Kamal with Homebrew Ruby if it is missing.\n'
 printf 'Selected AI client: %s\n' "${AGENT:-none}"
 if (( PREVIEW_ONLY == 1 )); then exit 0; fi
 if (( APPROVED == 0 )); then
@@ -73,6 +74,18 @@ fi
 
 echo "Installing required Homebrew packages from Brewfile..."
 "$BREW_BIN" bundle install --no-upgrade --file "$BUNDLE_FILE"
+
+BREW_RUBY_BIN="$("$BREW_BIN" --prefix)/opt/ruby/bin"
+if [[ ! -x "$BREW_RUBY_BIN/gem" ]]; then
+  echo "Homebrew Ruby's gem command is unavailable; cannot install Kamal." >&2
+  exit 1
+fi
+if "$BREW_RUBY_BIN/gem" list --local --exact --installed kamal >/dev/null; then
+  echo "Kamal is already installed for Homebrew Ruby."
+else
+  echo "Installing Kamal for Homebrew Ruby..."
+  "$BREW_RUBY_BIN/gem" install kamal --no-document
+fi
 
 if [[ -n "$AGENT" ]]; then
   case "$AGENT" in
@@ -136,4 +149,4 @@ else
 fi
 
 echo "Setup complete. Open a new Terminal window to load the shell configuration."
-echo "Next: follow SETUP.md for 1Password SSH, Git signing, manual apps, and verification."
+echo "Next: follow SETUP.md for Bitwarden SSH, Git signing, manual apps, and verification."

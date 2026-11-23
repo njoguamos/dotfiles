@@ -12,7 +12,7 @@ build_package_plan() {
   done <<'APPS'
 onedrive|OneDrive.app
 brave-browser|Brave Browser.app
-1password|1Password.app
+bitwarden|Bitwarden.app
 raycast|Raycast.app
 APPS
   while IFS= read -r line || [[ -n "$line" ]]; do

@@ -13,8 +13,8 @@ This repository configures a personal Mac. Help the user restore a working envir
 
 ## Security and change rules
 
-- Never generate, copy, print, or commit SSH private keys. The user's SSH key and agent live in 1Password.
-- Do not ask the user to paste passwords, 1Password recovery codes, tokens, private keys, or secret URLs into chat.
+- Never generate, copy, print, or commit SSH private keys. Use SSH keys stored in Bitwarden's vault through its enabled SSH agent; no local SSH private key is required. Migrate any existing 1Password key only through the user's secure workflow.
+- Do not ask the user to paste passwords, recovery codes, tokens, private keys, or secret URLs into chat.
 - Keep Git name/email and per-machine configuration in local settings, never in tracked files.
 - Do not run remote scripts with `curl | sh` except the bootstrap command the user explicitly started. Inspect scripts in this repo before running them.
 - Do not modify macOS defaults, keyboard shortcuts, Dock, trackpad, login items, firewall, sleep/security settings, or privacy permissions without a clear user request. `macos-preferences.md` is a record/checklist, not an automation file.

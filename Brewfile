@@ -6,6 +6,7 @@ tap "shivammathur/extensions"
 
 brew "age"
 brew "ansible"
+brew "bitwarden-cli"
 brew "certbot"
 brew "cmake"
 brew "docker-credential-helper"

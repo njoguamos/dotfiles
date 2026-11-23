@@ -17,7 +17,7 @@ raycast|Raycast.app
 APPS
   while IFS= read -r line || [[ -n "$line" ]]; do
     found=0
-    for skip in "${conflicts[@]}"; do
+    for skip in ${conflicts[@]+"${conflicts[@]}"}; do
       if [[ "$line" == "cask \"$skip\"" ]]; then
         PRESERVED_CASKS+=("$skip")
         found=1
@@ -30,7 +30,7 @@ APPS
 
 report_preserved_casks() {
   local token
-  for token in "${PRESERVED_CASKS[@]}"; do
+  for token in ${PRESERVED_CASKS[@]+"${PRESERVED_CASKS[@]}"}; do
     printf 'Present, vendor-managed: %s\n' "$token"
   done
 }

@@ -60,12 +60,13 @@ if "$BREW_BIN" bundle check --no-upgrade --verbose --file "$BUNDLE_FILE"; then
   printf 'All requirements in this Homebrew plan are installed.\n'
 fi
 printf '\nShell: add Homebrew to ~/.zprofile when writable and link ~/.zshrc, backing up an existing regular file.\n'
+printf 'SSH: add the Bitwarden agent default to ~/.ssh/config when it is a regular file or absent.\n'
 printf 'Ruby gems: install Kamal with Homebrew Ruby if it is missing.\n'
 printf 'Selected AI client: %s\n' "${AGENT:-none}"
 if (( PREVIEW_ONLY == 1 )); then exit 0; fi
 if (( APPROVED == 0 )); then
   [[ -r /dev/tty && -w /dev/tty ]] || { echo "Use an interactive terminal or approve the plan in chat." >&2; exit 1; }
-  printf '\nThis installs packages and may request administrator approval. Apply the manifest and link the managed Zsh config? [y/N] '
+  printf '\nThis installs packages and may request administrator approval. Apply the setup plan? [y/N] '
   IFS= read -r answer </dev/tty || answer=""
   [[ "$answer" =~ ^[Yy]$ ]] || { echo "Setup cancelled."; exit 0; }
 else
@@ -146,6 +147,19 @@ elif [[ -e "$ZSHRC" ]]; then
   fi
 else
   ln -s "$DOTFILES_DIR/.zshrc" "$ZSHRC"
+fi
+
+SSH_CONFIG="$HOME/.ssh/config"
+if [[ -L "$SSH_CONFIG" || ( -e "$SSH_CONFIG" && ! -f "$SSH_CONFIG" ) ]]; then
+  echo 'Leaving ~/.ssh/config untouched. Include ssh-agent.conf from the dotfiles checkout under Host * to use the Bitwarden default.'
+else
+  mkdir -p "$HOME/.ssh"
+  SSH_AGENT_INCLUDE="    Include \"$DOTFILES_DIR/ssh-agent.conf\""
+  if [[ ! -f "$SSH_CONFIG" ]] || ! grep -Fqx -- "$SSH_AGENT_INCLUDE" "$SSH_CONFIG"; then
+    # Reset any preceding Host or Match and let existing agent settings take precedence.
+    printf '\nHost *\n%s\n' "$SSH_AGENT_INCLUDE" >> "$SSH_CONFIG"
+    echo 'Added the Bitwarden agent default to ~/.ssh/config.'
+  fi
 fi
 
 echo "Setup complete. Open a new Terminal window to load the shell configuration."

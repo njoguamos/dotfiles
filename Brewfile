@@ -4,6 +4,7 @@
 # The pcov formulae use the existing shivammathur/extensions tap.
 tap "shivammathur/extensions"
 
+brew "age"
 brew "ansible"
 brew "certbot"
 brew "cmake"
@@ -28,6 +29,7 @@ brew "pure"
 brew "ruby"
 brew "scrcpy"
 brew "shivammathur/extensions/pcov@8.5"
+brew "sops"
 brew "subversion"
 brew "wget"
 brew "zsh-autosuggestions"
